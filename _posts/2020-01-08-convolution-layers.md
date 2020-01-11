@@ -1,14 +1,14 @@
 ---
 layout: post
-title: "[Study] Video Segmentation"
-categories: [general, setup, demo]
-tags: [demo, dbyll, dbtek, setup]
+title: "[Study] Types of Convolution Layer"
+categories: [deep learning, cnn]
+tags: [cnn, convolution layer]
 fullview: true
 comments: true
 ---
 
 
-## Video Segmentation
+## Convolution Layer의 종류들
 
 Model 종류
 - FCN
