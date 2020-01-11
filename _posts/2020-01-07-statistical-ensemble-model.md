@@ -26,8 +26,13 @@ asda
 asdasdasd
 
 ### 2. 통계 분석
- - MAD(Mean Absolute Deviation)
- - 
+- MAD(Mean Absolute Deviation)
+- MAD(Mean Absolute Difference)
+- Pearson correlation
+- Confidence interval
+- RMSD(Root Mean Square Deviation)
+- RMM
+- 
 
 
 

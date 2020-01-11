@@ -9,27 +9,19 @@ comments: true
 
 
 ## Convolution Layer의 종류들
-
-Model 종류
-- FCN
-- U-Net
-- 3D Segmentation Model
-- RNN + Segmentation Model (Sequence Video Segmentation)
-
-### 3D Semantic Segmentation
-1. An Efficient 3D CNN for Action/Object Segmentation on Video
-- Unsupervised Learning
-- Use 3D Seperable convolution(channel-wise(known as depth-wise) + point-wise)
-- R(2+1)D Conv(Spatial + Temporal) : A Closer Look at Spatiotemporal Convolutions for Action Recognition
-[ref site](https://blog.airlab.re.kr/2019/09/R(2+1)D)
+### 1. 2D Convolution Layer
 
 
-
-Primary Metrics :
-- IoU(Intersection over Union) or Jaccard Index
-- F-measure(Contour Accuracy)
+### 2. Depth-wise(Channel-wise) Convolution Layer
 
 
-**dbyll** is brought to you by **[dbtek](http://ismaildemirbilek.com)**. Open sourced under [MIT](http://opensource.org/licenses/MIT) license.
+### 3. Point-wise Convolution Layer
 
-<a class="btn btn-default" href="https://github.com/dbtek/dbyll">Grab your copy now!</a>
+
+### 4. Seperable Convolution Layer
+
+
+### 5. Transpose Convolution Layer
+
+
+### 6. 3D Convolution Layer
