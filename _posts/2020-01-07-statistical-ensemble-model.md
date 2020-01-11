@@ -16,11 +16,11 @@ Ensemble model을 선택해야되는 일이 있어 참고용 논문을 읽은 �
 1. 앙상블 모델 선택 방법
 총 2가지 방법을 사용하여 진행하는데, 하나는 Combination을 통해 가진 모델 중 일부를 선택하여 평균을 내는 방법, 다른 방법은 가진 모델들 중 Top N개의 모델을 선택하는 방법이다.
 
-- Combination Method
+ - Combination Method
 asfasfasfasfa
 asdfasdf
 
-- Top N Method
+ - Top N Method
 asdasd
 asda
 asdasdasd
