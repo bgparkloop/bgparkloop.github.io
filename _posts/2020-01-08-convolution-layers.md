@@ -7,11 +7,15 @@ fullview: true
 comments: true
 ---
 
+.center {
+  display: block;
+  margin: auto;
+}
 
 ## Convolution Layer의 종류들
 ### 1. Basic 2D Convolution Layer
 
-![basic_conv]({{site.url}}/assets/images/basic-conv.gif)
+![basic_conv]({{site.url}}/assets/images/basic-conv.gif){: width="300" height="300"){: .center}
 <p>
 alskdflkajslkdfjaslkdjflaksjfdlkajlkz azsdklfajsldfjas asdkfalskdjfla sjdflajsdlkf jasldf askdjf lasdjf laksjdf lkasjdflka jslkfjal ksjflkas jlfkaj lskjflaks jdlaksjdlfk aslkdjf laksjdflk asjdlfk jalskdfjlaks djflkasjdlkjlkjkljl;sdjflajs;ldfja oiwj askdjvkl ajflk ajsdlk jasiodjf aijseflkj dsaf a
 </p>
