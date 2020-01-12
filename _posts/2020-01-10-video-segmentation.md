@@ -6,7 +6,7 @@ tags: [demo, dbyll, dbtek, setup]
 fullview: true
 comments: true
 ---
-
+https://www.youtube.com/watch?v=0VH1Lim8gL8
 
 ## Video Segmentation
 
