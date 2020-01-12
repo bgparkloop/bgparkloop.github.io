@@ -9,7 +9,10 @@ comments: true
 
 
 ## Convolution Layer의 종류들
-### 1. 2D Convolution Layer
+### 1. Basic 2D Convolution Layer
+![basic_conv](./assets/images/basic-conv.gif)
+
+### 1. Dilated Convolution Layer
 
 
 ### 2. Depth-wise(Channel-wise) Convolution Layer
