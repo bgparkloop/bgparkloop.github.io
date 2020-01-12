@@ -11,6 +11,11 @@ comments: true
   display: block;
   margin: auto;
 }
+https://blog.jaeyoon.io/2017/12/jekyll-image.html
+https://theorydb.github.io/envops/2019/05/22/envops-blog-how-to-use-md/
+https://blog.yena.io/studynote/2017/11/23/Github-resize-image.html
+
+https://zzsza.github.io/data/2018/02/23/introduction-convolution/
 
 ## Convolution Layer의 종류들
 ### 1. Basic 2D Convolution Layer
