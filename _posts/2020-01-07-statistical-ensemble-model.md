@@ -41,8 +41,7 @@ Ensemble model을 선택해야되는 일이 있어 참고용 논문을 읽은 �
 #### 2.2. Figure & Table Analysis
 Figure와 Table 분석을 통해 앙상블 모델을 어떻게 선택하는지 설명하고 있다.
 <br><br>
-<center><img src='{{ "/assets/images/ensemble_01.PNG" | relative_url }}' width="600" height="600"></center>
-- 처음 Figure는 RMM(Mean model correlation for a model)을 분석한 것으로써 선택된 모델이 다른 모델들과 어느정도 상관관계를 갖는가에 대해 나타낸 것이다. 계산은 pair를 이루게 2개의 모델을 선택하여(한 모델은 기준이 되는 모델 - 예를들어 1번 모델과 3번, 1번모델과 4번 등) 두 모델간 상관관계를 계산한다. 기준이 되는 모델(1번)과 그 외 나머지 모델과의 상관관계를 전부 계산하고 이를 평균을 취해 나타낸다.
+<img src='{{ "/assets/images/ensemble_01.PNG" | relative_url }}' width="600" height="600"> - 처음 Figure는 RMM(Mean model correlation for a model)을 분석한 것으로써 선택된 모델이 다른 모델들과 어느정도 상관관계를 갖는가에 대해 나타낸 것이다. 계산은 pair를 이루게 2개의 모델을 선택하여(한 모델은 기준이 되는 모델 - 예를들어 1번 모델과 3번, 1번모델과 4번 등) 두 모델간 상관관계를 계산한다. 기준이 되는 모델(1번)과 그 외 나머지 모델과의 상관관계를 전부 계산하고 이를 평균을 취해 나타낸다. 상관관계가 낮을수록 파란색으로 채워져있고, 높을수록 붉은색으로 표현된다.
 <center><img src='{{ "/assets/images/ensemble_00.PNG" | relative_url }}' width="600" height="400"></center>
 - RMM은 Table1에서 보는 것처럼 모델의 성능(MAD Error)과 관련이 있는데, 성능이 좋을수록(MAD가 낮을수록) RMM도 동시에 낮아진다. 이를 통해 모델 간 상관관계가 적을 수록 좋은 성능을 지닌 모델로 볼 수 있다.
 
