@@ -46,7 +46,7 @@ Figure와 Table 분석을 통해 앙상블 모델을 어떻게 선택하는지 �
 - RMM은 Table1에서 보는 것처럼 모델의 성능(MAD Error)과 관련이 있는데, 성능이 좋을수록(MAD가 낮을수록) RMM도 동시에 낮아진다. 이를 통해 모델 간 상관관계가 적을 수록 좋은 성능을 지닌 모델로 볼 수 있다.
 
 <center><img src='{{ "/assets/images/ensemble_02.PNG" | relative_url }}' width="600" height="600"></center>
-- 
+- Figure4도 Figure3과 마찬가지로 모델의 성능을 표현한다. Fig.4에서는 MAD 기준으로 표현하였으며, Fig.3과 마찬가지로 4번과 16번이 가장 성능이 좋음을 알 수 있다.
 
 <center><img src='{{ "/assets/images/ensemble_03.PNG" | relative_url }}' width="600" height="800"></center>
 - 
