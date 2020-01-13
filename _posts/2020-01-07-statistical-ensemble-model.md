@@ -39,7 +39,7 @@ Ensemble model을 선택해야되는 일이 있어 참고용 논문을 읽은 �
 <br><img style="vertical-align:middle" src="http://latex.codecogs.com/png.latex?\dpi{100}\bg_white RMSD=\sqrt{\frac{\sum_i{N}{(\hat{x_i}-x_i)}^2}{N}}"/>  
 
 #### 2.2. Figure & Table Analysis
-<center><img src='{{ "/assets/images/ensemble_01.png" | relative_url }}' width="300" height="300"></center>
-<center><img src='{{ "/assets/images/ensemble_02.png" | relative_url }}' width="300" height="300"></center>
-<center><img src='{{ "/assets/images/ensemble_03.png" | relative_url }}' width="300" height="300"></center>
-<center><img src='{{ "/assets/images/ensemble_04.png" | relative_url }}' width="300" height="300"></center>
+<center><img src='{{ "/assets/images/ensemble_01.PNG" | relative_url }}' width="300" height="300"></center>
+<center><img src='{{ "/assets/images/ensemble_02.PNG" | relative_url }}' width="300" height="300"></center>
+<center><img src='{{ "/assets/images/ensemble_03.PNG" | relative_url }}' width="300" height="300"></center>
+<center><img src='{{ "/assets/images/ensemble_04.PNG" | relative_url }}' width="300" height="300"></center>
