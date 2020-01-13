@@ -50,7 +50,7 @@ Figure와 Table 분석을 통해 앙상블 모델을 어떻게 선택하는지 �
 <center><img src='{{ "/assets/images/ensemble_02.PNG" | relative_url }}' width="700" height="600"></center>
 - Figure4도 Figure3과 마찬가지로 모델의 성능을 표현한다. Fig.4에서는 MAD 기준으로 표현하였으며, Fig.3과 마찬가지로 4번과 16번이 가장 성능이 좋음을 알 수 있다.
 <br>
-<center><img src='{{ "/assets/images/ensemble_03.PNG" | relative_url }}' width="400" height="500"></center>
+<center><img src='{{ "/assets/images/ensemble_03.PNG" | relative_url }}' width="500" height="550"></center>
 - Table 3, 4는 계속해서 MAD를 기준으로 모델의 성능평가를 보여준다. Table 3에서는 AMC와 Top-N 모두에 대해 성능평가를 보여준다. 전체적으로 AMC가 성능이 좋음을 확인 할 수 있다. Tabel 4는 아예 AMC에 대해서만 나타낸다. 1~10개를 선택하여 나타낸 것으로 Best Ensemble 모델 조합을 표현했고 괄호안에 1000번 중 얼만큼 비율로 해당 모델 조합이 나왔는지 표기하였다. Runner-up은 2번째로 성능이 좋은 조합이다.
 <br>
 <center><img src='{{ "/assets/images/ensemble_04.PNG" | relative_url }}' width="700" height="600"></center>
