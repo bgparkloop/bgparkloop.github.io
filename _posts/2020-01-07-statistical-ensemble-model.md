@@ -1,8 +1,8 @@
 ---
 layout: post
 title: "[Paper Review] Statistical Ensemble Model"
-categories: [deep learning, ensemble]
-tags: [cnn, ensemble]
+categories: [deep learning, ensemble, statistics]
+tags: [cnn, ensemble, statistics]
 fullview: true
 comments: true
 ---
@@ -41,14 +41,21 @@ Ensemble model을 선택해야되는 일이 있어 참고용 논문을 읽은 �
 #### 2.2. Figure & Table Analysis
 Figure와 Table 분석을 통해 앙상블 모델을 어떻게 선택하는지 설명하고 있다.
 <br><br>
-<img src='{{ "/assets/images/ensemble_01.PNG" | relative_url }}' width="700" height="600"> - 처음 Figure는 RMM(Mean model correlation for a model)을 분석한 것으로써 선택된 모델이 다른 모델들과 어느정도 상관관계를 갖는가에 대해 나타낸 것이다. 계산은 pair를 이루게 2개의 모델을 선택하여(한 모델은 기준이 되는 모델 - 예를들어 1번 모델과 3번, 1번모델과 4번 등) 두 모델간 상관관계를 계산한다. 기준이 되는 모델(1번)과 그 외 나머지 모델과의 상관관계를 전부 계산하고 이를 평균을 취해 나타낸다. 상관관계가 낮을수록 파란색으로 채워져있고, 높을수록 붉은색으로 표현된다.
-<center><img src='{{ "/assets/images/ensemble_00.PNG" | relative_url }}' width="600" height="400"></center>
+<center><img src='{{ "/assets/images/ensemble_01.PNG" | relative_url }}' width="700" height="600"></center>
+- 처음 Figure는 RMM(Mean model correlation for a model)을 분석한 것으로써 선택된 모델이 다른 모델들과 어느정도 상관관계를 갖는가에 대해 나타낸 것이다. 계산은 pair를 이루게 2개의 모델을 선택하여(한 모델은 기준이 되는 모델 - 예를들어 1번 모델과 3번, 1번모델과 4번 등) 두 모델간 상관관계를 계산한다. 기준이 되는 모델(1번)과 그 외 나머지 모델과의 상관관계를 전부 계산하고 이를 평균을 취해 나타낸다. 상관관계가 낮을수록 파란색으로 채워져있고, 높을수록 붉은색으로 표현된다.
+<br>
+<center><img src='{{ "/assets/images/ensemble_00.PNG" | relative_url }}' width="500" height="350"></center>
 - RMM은 Table1에서 보는 것처럼 모델의 성능(MAD Error)과 관련이 있는데, 성능이 좋을수록(MAD가 낮을수록) RMM도 동시에 낮아진다. 이를 통해 모델 간 상관관계가 적을 수록 좋은 성능을 지닌 모델로 볼 수 있다.
-
+<br>
 <center><img src='{{ "/assets/images/ensemble_02.PNG" | relative_url }}' width="700" height="600"></center>
 - Figure4도 Figure3과 마찬가지로 모델의 성능을 표현한다. Fig.4에서는 MAD 기준으로 표현하였으며, Fig.3과 마찬가지로 4번과 16번이 가장 성능이 좋음을 알 수 있다.
-
-<center><img src='{{ "/assets/images/ensemble_03.PNG" | relative_url }}' width="800" height="600"></center>
+<br>
+<center><img src='{{ "/assets/images/ensemble_03.PNG" | relative_url }}' width="40" height="500"></center>
 - Table 3, 4는 계속해서 MAD를 기준으로 모델의 성능평가를 보여준다. Table 3에서는 AMC와 Top-N 모두에 대해 성능평가를 보여준다. 전체적으로 AMC가 성능이 좋음을 확인 할 수 있다. Tabel 4는 아예 AMC에 대해서만 나타낸다. 1~10개를 선택하여 나타낸 것으로 Best Ensemble 모델 조합을 표현했고 괄호안에 1000번 중 얼만큼 비율로 해당 모델 조합이 나왔는지 표기하였다. Runner-up은 2번째로 성능이 좋은 조합이다.
-
+<br>
 <center><img src='{{ "/assets/images/ensemble_04.PNG" | relative_url }}' width="700" height="600"></center>
+- Figure 5는 이 논문의 핵심이라고 볼 수 있다. 이 Matrix를 통해 Optimal Ensemble 모델을 선택한다.(Optimal이 맞다고 할 수 있을련지..?) M1, A2, ..., A10, T2, ..., T10이 나와있는데 각각 M1(Single model), A2(AMC 2), T2(Top-2)로 표현된다. Matrix 안의 숫자는 X축의 모델이 Y축의 모델보다 좋은 성능을 낸 비율을 나타낸다. 만약 X축의 A4에 Y축의 T2라면, A4모델이 T2모델보다 1000번 중 97%만큼 좋은 성능을 보였다는 것을 나타낸다. X축의 모델 밑에 확률이 또 있는데 이 확률은 해당 모델이 1000번 중 가장 낮은 Error값을 보인 비율이다. 이를 토대로 A4모델의 경우 1000번 중 24%만큼 최소 error를 보였기 때문에 논문에서는 이 모델을 가장 좋은 앙상블 모델로 선정했다.
+
+---
+### 3. 결론
+이 논문에서 제안하는 앙상블 모델 선택 방법은 굉장히 일반적인 선택 방법들 중 하나이다. 다만, 통계적으로 접근하여 해당 조합을 선택했다는 점에서 무작정 선택하는 조합보다 설득력이 있다고 본다. 이 논문에서는 MAD를 기준으로 모델 선택을 하였지만, Classification과 같은 다른 Task에서는 AUC나 F1 score 등 다양한 Metric을 통해 같은 방식으로 선택해 볼 수 있을 것 같다.
