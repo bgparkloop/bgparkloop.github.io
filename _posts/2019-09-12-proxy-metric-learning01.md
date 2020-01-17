@@ -22,6 +22,7 @@ Recognition, Retrieval 등 다양한 분야에서 사용되는 Metric Learning�
 ---
 ### 2. Proposed Methods
 저자들은 Proxy기반의 학습법으로 진행하기 위해 NCA(Ceighborhood Component Analysis) loss라는 것을 제안한다. NCA loss는 아래 수식처럼 sample vector x를 proxy vector y에 가깝게 만드는 것이 목적이다. Z는 모든 샘플이 있는 set을 지칭한다.
+<br><img style="vertical-align:middle" src="http://latex.codecogs.com/png.latex?\dpi{100}\bg_white L_{NCA}(x,y,Z)="/>   
 <br><img style="vertical-align:middle" src="http://latex.codecogs.com/png.latex?\dpi{100}\bg_white L_{NCA}(x,y,Z)=-\log(\frac{\exp(-d(x,y))}{\sum_{z\inZ}\exp(-d(x,z))})"/>   
 
 
