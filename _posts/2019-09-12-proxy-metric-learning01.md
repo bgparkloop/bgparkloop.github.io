@@ -34,7 +34,7 @@ Proxy 방법을 사용하면, 기존의 방법들보다 학습 속도 및 정확
 ---
 ### 3. Experimental Results
 
-<center><img src='{{ "/assets/images/proxy_03.PNG" | relative_url }}' width="400" height="400"><img src='{{ "/assets/images/proxy_06.PNG" | relative_url }}' width="400" height="400"></center>
+<center><img src='{{ "/assets/images/proxy_03.PNG" | relative_url }}' width="200" height="200"><img src='{{ "/assets/images/proxy_06.PNG" | relative_url }}' width="200" height="200"></center>
 
 <center><img src='{{ "/assets/images/proxy_01.PNG" | relative_url }}' width="500" height="300"></center>
 
