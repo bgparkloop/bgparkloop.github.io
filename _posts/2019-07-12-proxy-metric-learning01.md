@@ -1,8 +1,8 @@
 ---
 layout: post
 title: "[Paper Review] Metric Learning 01"
-categories: [deep learning, metric, learning, proxy]
-tags: [cnn, metric, learning, proxy]
+categories: [metric learning]
+tags: [metric learning, proxy]
 fullview: true
 comments: true
 ---
@@ -33,11 +33,22 @@ Proxy 방법을 사용하면, 기존의 방법들보다 학습 속도 및 정확
 
 ---
 ### 3. Experimental Results
-
 <center><img src='{{ "/assets/images/proxy_03.PNG" | relative_url }}' width="250" height="250"><img src='{{ "/assets/images/proxy_06.PNG" | relative_url }}' width="250" height="250"></center>
+실험 성능은 기존 것들에 비해 상당히 우수하다. 위 그림처럼 Query image에 대해서도 유사도 거리에 따른 순서로 검색된 이미지들이 정답에 가깝게 잘 찾아주는 것을 확인 할 수 있다.
 
 <center><img src='{{ "/assets/images/proxy_05.PNG" | relative_url }}' width="500" height="300"></center>
+위 그래프는 기존의 다른 방법들과의 성능을 비교한 것으로, Recall@1의 성능이 가장 좋은 것을 확인 할 수 있다. 
+- Recall@K : Query image에 대해 distance가 가장 작은 순으로 K개를 골랐을 때, 정답이 있을 확률. Recall@1이면 일반적인 Classification과 같다고 봐도 될 듯..?
+
 
 <center><img src='{{ "/assets/images/proxy_09.PNG" | relative_url }}' width="500" height="300"></center>
+저자들이 제안한 Proxy 방법은 label과 proxy가 1 to 1으로 매칭되는 것이 기본인데, 특이하게 multi label에 대해 proxy를 매칭하는 것을 실험하였다. Label 갯수보다 proxy 갯수가 적을 때와, 같을 때, 많을 때를 구분하여 실험을 진행하였다. 위 그래프처럼 Proxies per class가 0.5를 넘을 때부터 기존 방법들보다 좋은 성능을 보였다. 0.5 수치는 label 갯수가 proxy보다 2배 많은 경우를 이야기한다.
 
-[Paper : ](https://arxiv.org/pdf/1703.07464.pdf)
+
+---
+### 4. Conclusion
+제안된 방법은 기존의 triplet loss 구조보다 간단하고, 메모리 및 연산량의 감소, 효율적인 학습률의 많은 장점이 있다. Contrasitive loss나 triplet loss 기반의 방법들보다 classification에 가까운 쉬운 방법론으로 인해 이해도 어렵지 않았다. 구현하기에도 까다롭지 않아 실 사용에도 어렵지 않다. 여러모로 구글이라는 생각이 든다. 
+
+
+Paper : [https://arxiv.org/pdf/1703.07464.pdf](https://arxiv.org/pdf/1703.07464.pdf)
+Code : [https://github.com/dichotomies/proxy-nca](https://github.com/dichotomies/proxy-nca)

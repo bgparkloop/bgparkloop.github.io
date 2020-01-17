@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "[Paper Review] Statistical Ensemble Model"
-categories: [deep learning, ensemble, statistics]
+categories: [machine learning]
 tags: [cnn, ensemble, statistics]
 fullview: true
 comments: true
@@ -14,7 +14,7 @@ Ensemble model을 선택해야되는 일이 있어 참고용 논문을 읽은 �
 이 논문에서는 통계적인 방법을 통해 여러개의 모델들을 어떻게 앙상블해야 좋은 결과를 낼 수 있을지 분석한다.
 
 ---
-### 1. 앙상블 모델 선택 방법
+### 1. Ensemble model Selecting
 총 2가지 방법을 사용하여 진행하는데, 하나는 Combination을 통해 가진 모델 중 일부를 선택하여 평균을 내는 방법, 다른 방법은 가진 모델들 중 Top N개의 모델을 선택하는 방법이다. 이 논문에서는 이미 학습된 모델 48개를 Testset 200장에 대해 앙상블 모델을 선택하는 법을 제안한다.
 
 - AMC(All-Model-Combination) Method: 전체 모델 수에서 1부터 N개까지 차례대로 모든 경우의 수만큼 모델 조합을 추출하여 validation set으로 검증하여 앙상블 모델을 선택하고 testset으로 검증한다. 논문에서는 48개 중 1에서 10개까지의 조합만 검증하였다.
@@ -22,7 +22,7 @@ Ensemble model을 선택해야되는 일이 있어 참고용 논문을 읽은 �
 - Top N Method: AMC와 다르게 전체 모델에 대해 validation set으로 error를 계산하고 이 중 error가 가장 작은 N개를 추출하여 앙상블 모델로 사용한다.
 
 ---
-### 2. 통계 분석
+### 2. Statistical Analysis
 논문에서 앙상블 모델의 조합은 매우 간단하게하고 이 중에서 best 앙상블 모델을 선택하는데 통계적인 기법을 사용한다. 1번에서 설명한 것과 같은 방법으로 앙상블 모델을 선택하는데 이를 모든 경우에 대해 1000번씩 테스트한다. 아래에 나오는 Metric들을 통해 다각도에서 분석 후 최종적으로 모델을 선택한다.
 
 
@@ -57,5 +57,5 @@ Figure와 Table 분석을 통해 앙상블 모델을 어떻게 선택하는지 �
 - Figure 5는 이 논문의 핵심이라고 볼 수 있다. 이 Matrix를 통해 Optimal Ensemble 모델을 선택한다.(Optimal이 맞다고 할 수 있을련지..?) M1, A2, ..., A10, T2, ..., T10이 나와있는데 각각 M1(Single model), A2(AMC 2), T2(Top-2)로 표현된다. Matrix 안의 숫자는 X축의 모델이 Y축의 모델보다 좋은 성능을 낸 비율을 나타낸다. 만약 X축의 A4에 Y축의 T2라면, A4모델이 T2모델보다 1000번 중 97%만큼 좋은 성능을 보였다는 것을 나타낸다. X축의 모델 밑에 확률이 또 있는데 이 확률은 해당 모델이 1000번 중 가장 낮은 Error값을 보인 비율이다. 이를 토대로 A4모델의 경우 1000번 중 24%만큼 최소 error를 보였기 때문에 논문에서는 이 모델을 가장 좋은 앙상블 모델로 선정했다.
 
 ---
-### 3. 결론
+### 3. Conclusion
 이 논문에서 제안하는 앙상블 모델 선택 방법은 굉장히 일반적인 선택 방법들 중 하나이다. 다만, 통계적으로 접근하여 해당 조합을 선택했다는 점에서 무작정 선택하는 조합보다 설득력이 있다고 본다. 이 논문에서는 MAD를 기준으로 모델 선택을 하였지만, Classification과 같은 다른 Task에서는 AUC나 F1 score 등 다양한 Metric을 통해 같은 방식으로 선택해 볼 수 있을 것 같다.

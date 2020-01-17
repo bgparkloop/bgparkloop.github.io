@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "[Study] Types of Convolution Layer"
-categories: [deep learning, cnn]
+categories: [deep learning]
 tags: [cnn, convolution layer]
 fullview: true
 comments: true
