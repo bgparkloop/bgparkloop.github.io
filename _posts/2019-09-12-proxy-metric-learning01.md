@@ -26,7 +26,7 @@ Recognition, Retrieval 등 다양한 분야에서 사용되는 Metric Learning�
 이렇게 Proxy 기반의 방법을 이용하면 기존의 Triplet의 엄청난 샘플링 연산량(Data수를 N으로 가정하면 최대 O(N^3))에서 엄청나게 줄일 수 있으며, loss 계산도 매우 간단해진다. 따라서, 최종적으로 아래 수식처럼 Loss를 sample vectors x와 z, y class의 proxy vector들 사이의 관계로 나타낼 수 있다.
 <br><center><img style="vertical-align:middle" src="http://latex.codecogs.com/png.latex?\dpi{100}\bg_white \begin{align*} L_{Ranking}(x,y,z) &= H(\left \| \alpha x -p(y) \right \| - \left \| \alpha x -p(z) \right \|) \\
 &= H({\left \| \alpha x -p(y) \right \|}^2 - {\left \| \alpha x -p(z) \right \|}^2) \\
-&= H(2\alpha (x^T p(z))-x^T p(y))) = H(x^T p(z) - x^T p(y)) \end{align*}"/> </center>
+&= H(2\alpha (x^T p(z)-x^T p(y))) = H(x^T p(z) - x^T p(y)) \end{align*}"/> </center>
 
 ---
 ### 3. Experimental Results
