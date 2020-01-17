@@ -17,6 +17,8 @@ Recognition, Retrieval 등 다양한 분야에서 사용되는 Metric Learning�
 
 <center><img src='{{ "/assets/images/proxy_02.PNG" | relative_url }}' width="700" height="300"></center>
 
+위의 그림이 바로 Triplet과 Proxy의 차이점을 나타낸 것이다. 그림의 왼쪽은 Anchor를 기준으로 유사한 sample들을 가깝게하고 다른 것들을 멀리에 배치하는 것을 목표로 한다면, Proxy 기반의 학습법은 오른쪽 그림처럼 각 class에 해당하는 대표값(proxy)를 두어서 anchor의 embedding vector가 대표값에 가까워지게 학습을 한다.
+
 ---
 ### 2. Proposed Methods
 저자들은 Proxy기반의 학습법으로 진행하기 위해 NCA(Ceighborhood Component Analysis) loss라는 것을 제안한다.
