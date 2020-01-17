@@ -24,9 +24,19 @@ Recognition, Retrieval 등 다양한 분야에서 사용되는 Metric Learning�
 저자들은 Proxy기반의 학습법으로 진행하기 위해 NCA(Neighborhood Component Analysis) loss라는 것을 제안한다. NCA loss는 아래 수식처럼 sample vector x를 proxy vector y에 가깝게 만드는 것이 목적이다. Z는 모든 샘플이 있는 set을 지칭한다.
 <br><center><img style="vertical-align:middle" src="http://latex.codecogs.com/png.latex?\dpi{100}\bg_white L_{NCA}(x,y,Z) = -\log(\frac{\exp(-d(x,y))}{ \sum_{z\in{Z}}\exp(-d(x,z))})"/> </center>
 이렇게 Proxy 기반의 방법을 이용하면 기존의 Triplet의 엄청난 샘플링 연산량(Data수를 N으로 가정하면 최대 O(N^3))에서 엄청나게 줄일 수 있으며, loss 계산도 매우 간단해진다. 따라서, 최종적으로 아래 수식처럼 Loss를 sample vectors x와 z, y class의 proxy vector들 사이의 관계로 나타낼 수 있다.
-<br><center><img style="vertical-align:middle" src="http://latex.codecogs.com/png.latex?\dpi{100}\bg_white \begin{align*} L_{Ranking}(x,y,z) &= H(\left \| \alpha x -p(y) \right \| - \left \| \alpha x -p(z) \right \|) \\
+<br><br><center><img style="vertical-align:middle" src="http://latex.codecogs.com/png.latex?\dpi{100}\bg_white \begin{align*} L_{Ranking}(x,y,z) &= H(\left \| \alpha x -p(y) \right \| - \left \| \alpha x -p(z) \right \|) \\
 &= H({\left \| \alpha x -p(y) \right \|}^2 - {\left \| \alpha x -p(z) \right \|}^2) \\
 &= H(2\alpha (x^T p(z)-x^T p(y))) = H(x^T p(z) - x^T p(y)) \end{align*}"/> </center>
+<br>
+Proxy 방법을 사용하면, 기존의 방법들보다 학습 속도 및 정확도가 상당히 높아지는 것을 확인 할 수 있다.
+<center><img src='{{ "/assets/images/proxy_01.PNG" | relative_url }}' width="500" height="300"></center>
 
 ---
 ### 3. Experimental Results
+
+<center><img src='{{ "/assets/images/proxy_03.PNG" | relative_url }}' width="400" height="400"><img src='{{ "/assets/images/proxy_06.PNG" | relative_url }}' width="400" height="400"></center>
+
+<center><img src='{{ "/assets/images/proxy_01.PNG" | relative_url }}' width="500" height="300"></center>
+
+
+![Paper : ](https://arxiv.org/pdf/1703.07464.pdf)
