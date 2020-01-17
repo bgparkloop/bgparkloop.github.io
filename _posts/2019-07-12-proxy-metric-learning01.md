@@ -50,5 +50,5 @@ Proxy 방법을 사용하면, 기존의 방법들보다 학습 속도 및 정확
 제안된 방법은 기존의 triplet loss 구조보다 간단하고, 메모리 및 연산량의 감소, 효율적인 학습률의 많은 장점이 있다. Contrasitive loss나 triplet loss 기반의 방법들보다 classification에 가까운 쉬운 방법론으로 인해 이해도 어렵지 않았다. 구현하기에도 까다롭지 않아 실 사용에도 어렵지 않다. 여러모로 구글이라는 생각이 든다. 
 
 
-Paper : [https://arxiv.org/pdf/1703.07464.pdf](https://arxiv.org/pdf/1703.07464.pdf)
+Paper : [https://arxiv.org/pdf/1703.07464.pdf](https://arxiv.org/pdf/1703.07464.pdf)  
 Code : [https://github.com/dichotomies/proxy-nca](https://github.com/dichotomies/proxy-nca)
