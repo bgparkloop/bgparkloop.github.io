@@ -34,7 +34,7 @@ Scalability issue를 해결하기 위한 Mini-batch안에 최적의 class수를 
 ---
 ### 3. Experimental Results
 #### 3.1. Loss Function Comparison
-<center><img src='{{ "/assets/images/proxy_12.PNG" | relative_url }}' width="500" height="900"></center>
+<center><img src='{{ "/assets/images/proxy_12.PNG" | relative_url }}' width="500" height="800"></center>
 위 그림은 각 Loss function 별로 성능을 비교한 것이다. Loss Function 옆의 작은 숫자는 embedding vector의 크기를 나타낸 것이다. SOP, CARS-196 dataset에서는 NormSoftmax가 가장 뛰어난 성능을 보였으며, CUB-200에서도 1~2위를 다투는 좋은 성능을 보여준다. Table의 성능 비교를 통해 NormSoftmax가 학습 효율성이 좋은 Loss Function임이 증명된다.
 
 #### 3.2. Embedding Dimensionality
@@ -46,7 +46,7 @@ Scalability issue를 해결하기 위한 Mini-batch안에 최적의 class수를 
 Layer Normalization의 유/무에 따라 Loss가 수렴하는 정도와 성능의 비교를 보여준다. 확실히 적용을 할 때가 수렴 속도, 최저값, 성능 모두 더 나은 것을 볼 수 있다.
 
 #### 3.4. Class Balanced Sampling 실험
-<center><img src='{{ "/assets/images/proxy_14.PNG" | relative_url }}' width="500" height="250"></center>
+<center><img src='{{ "/assets/images/proxy_14.PNG" | relative_url }}' width="500" height="150"></center>
 SOP dataset(클래스 수가 약 1,000개)에 대해 mini-batch에 class 비율을 1% ~ 10%까지 변화시켜 테스트하였다. 사실상 엄청난 차이를 보이지는 않지만, 그래도 balanced sampling을 하는게 안하는 것보다는 낫다고 저자는 말한다. (실제로 회사에서 적용할 때, 적용하는 편이 그래도 수렴이 빨라 더 효율적이었다. 계속 학습하면 결국 거의 같아지긴 하였다. 시간 절약을 위해 적용하는 것이 좋겠다.)
 
 ---
