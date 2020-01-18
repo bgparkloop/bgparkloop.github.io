@@ -22,8 +22,9 @@ NCA와 마찬가지로 Classification 형태로 학습이 진행되고, 기존�
 
 
 #### 2.1. Normalized Softmax Loss
+저자들은 기존의 FC Layer에서 bias term을 없애고, Cosine similarity를 최적화해줄 L2 Normalization을 추가하였다. 또, Softmax 안에 Temperature scaling <img style="vertical-align:middle" src="http://latex.codecogs.com/png.latex?\dpi{100}\bg_white \sigma"/>를 두어 클래스들 간의 학습률의 차이를 boosting하는 방식을 사용하였다.
 
-
+<br><center><img style="vertical-align:middle" src="http://latex.codecogs.com/png.latex?\dpi{100}\bg_white L_{Norm} = -\log(\frac{\exp(x^T p_y / \sigma)}{ \sum_{z\in{Z}}\exp(x^T p_z / \sigma)})"/> </center>
 
 #### 2.2. Layer Normalization
 
