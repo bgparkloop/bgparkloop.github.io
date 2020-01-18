@@ -1,8 +1,8 @@
 ---
 layout: post
 title: "[Paper Review] Metric Learning 01"
-categories: [metric learning]
-tags: [metric learning, proxy]
+categories: [deep learning]
+tags: [metric learning]
 fullview: true
 comments: true
 ---
