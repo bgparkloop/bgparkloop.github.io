@@ -35,7 +35,7 @@ Paper : [https://arxiv.org/abs/1503.03832](https://arxiv.org/abs/1503.03832)
 <center><img src='{{ "/assets/images/study/similarity-img-03.png" | relative_url }}' width="300" height="100"></center>
 Triplet Network는 Siamese Network을 조금 더 발전시킨 것이다. 기존의 2개의 Image간 유사도를 측정하였다면, Anchor라 불리우는 Reference Image를 사이에 두고 같은 Class인 Positive Sample과 다른 Class인 Negative Sample을 하나의 Pair로 하여 말 그대로 Triplet(세 쌍둥이)를 형성한다.</p>
 
-<center><img src='{{ "/assets/images/study/similarity-img-04.jpg" | relative_url }}' width="300" height="200"></center>
+<center><img src='{{ "/assets/images/study/similarity-img-04.jpg" | relative_url }}' width="300" height="220"></center>
 학습의 진행은 아래의 그림과 같다. Anchor와 Positive의 관계는 서로를 Pull하는 효과를 보이고, Anchor와 Negative는 서로를 Push하여 같은 class간 variation은 작고, 다른 class간 variation은 크게 만드는 효과가 있다.  
 Siamese와 또 다른 점이 하나 있는데, Margin이라는 변수가 추가되어 학습을 돕는다. Margin은 아래 그림과 같은 역할을 담당한다. 적절한 크기의 Margin을 Loss Term에 추가함으로써, Anchor-Positive간 거리와 Anchor-Negative간 거리를 조절하고 학습의 수렴을 돕는다.
 
