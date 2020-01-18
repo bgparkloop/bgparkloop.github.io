@@ -43,15 +43,15 @@ Scalability issue를 해결하기 위한 Mini-batch안에 최적의 class수를 
 
 #### 3.3. Layer Normalization 유/무
 <center><img src='{{ "/assets/images/proxy_13.PNG" | relative_url }}' width="600" height="250"></center>
-
+Layer Normalization의 유/무에 따라 Loss가 수렴하는 정도와 성능의 비교를 보여준다. 확실히 적용을 할 때가 수렴 속도, 최저값, 성능 모두 더 나은 것을 볼 수 있다.
 
 #### 3.4. Class Balanced Sampling 실험
 <center><img src='{{ "/assets/images/proxy_14.PNG" | relative_url }}' width="500" height="250"></center>
-
+SOP dataset(클래스 수가 약 1,000개)에 대해 mini-batch에 class 비율을 1% ~ 10%까지 변화시켜 테스트하였다. 사실상 엄청난 차이를 보이지는 않지만, 그래도 balanced sampling을 하는게 안하는 것보다는 낫다고 저자는 말한다. (실제로 회사에서 적용할 때, 적용하는 편이 그래도 수렴이 빨라 더 효율적이었다. 계속 학습하면 결국 거의 같아지긴 하였다. 시간 절약을 위해 적용하는 것이 좋겠다.)
 
 ---
 ### 4. Conclusion
-
+NCA와 마찬가지로 크게 어려울 것 없는 논문이었다. NCA에서 다소 부족했던 점을 보충하여 학습 속도와 성능을 모두 끌어올려 훌륭한 것 같다. 논문에서는 SOTA들과 성능 비교한 table도 올려두었는데 Recall@1의 경우 1~3% 더 좋았고, Recall@10, Recall@100의 경우도 비슷한 정도로 좋았다. 이 방법도 결국 Proxy라는 형태를 도입한 것이 가장 큰 차별점이며, proxy가 좀 더 효율적으로 학습될 수 있도록 다양한 방법을 시도해 본 것 같다.
 
 
 Paper : [https://arxiv.org/pdf/1811.12649.pdf](https://arxiv.org/pdf/1811.12649.pdf)  
