@@ -1,8 +1,8 @@
 ---
 layout: post
 title: "[Study] Video Segmentation"
-categories: [general, setup, demo]
-tags: [demo, dbyll, dbtek, setup]
+categories: [deep learning]
+tags: [segmentation, video]
 fullview: true
 comments: true
 ---
