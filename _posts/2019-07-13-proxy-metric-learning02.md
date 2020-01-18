@@ -33,13 +33,20 @@ Scalability issue를 해결하기 위한 Mini-batch안에 최적의 class수를 
 
 ---
 ### 3. Experimental Results
-<center><img src='{{ "/assets/images/proxy_12.PNG" | relative_url }}' width="600" height="900"></center>
-ㅁㄴㅇㅁㄴㅇㅁㄴㅇ
-ㅁㄴㅇㅁㄴㅇ
+#### 3.1. Loss Function Comparison
+<center><img src='{{ "/assets/images/proxy_12.PNG" | relative_url }}' width="500" height="900"></center>
+위 그림은 각 Loss function 별로 성능을 비교한 것이다. Loss Function 옆의 작은 숫자는 embedding vector의 크기를 나타낸 것이다. SOP, CARS-196 dataset에서는 NormSoftmax가 가장 뛰어난 성능을 보였으며, CUB-200에서도 1~2위를 다투는 좋은 성능을 보여준다. Table의 성능 비교를 통해 NormSoftmax가 학습 효율성이 좋은 Loss Function임이 증명된다.
 
-<center><img src='{{ "/assets/images/proxy_11.PNG" | relative_url }}' width="600" height="400"></center>
-ㅁㄴㅇㅁㄴㅇㅁㄴㅇ
-ㅁㄴㅇㅁㄴㅇ
+#### 3.2. Embedding Dimensionality
+<center><img src='{{ "/assets/images/proxy_11.PNG" | relative_url }}' width="600" height="250"></center>
+다음으로는 Embedding vector의 크기 및 정밀도(float or binary)에 따라 성능 차이를 비교하였다. 그래프에서 보듯 차원 크기가 커질수록 당연히 예상하게도(?) 성능이 좋아짐을 볼 수 있다. 그래프에서는 Float와 Binary의 2가지 정밀도도 비교를 하고 있는데 Float는 embedding vector를 Layer Normalization으로 zero-centered로 바꾼 뒤 그대로 사용한 것이고, Binary는 이 상태에서 0을 기준으로 threholding하여 각 dimension마다 0 또는 1의 binary형태로 변환한 것을 의미한다. 차원의 크기가 커질수록 2개의 성능은 유사해지긴 하지만, float 형태가 기본적으로 정보량이 더 풍부하기 때문에 성능의 우세함을 보인다. 메모리를 아끼려면 binary 형태로 사용하는 것도 고려해 볼만 하다.
+
+#### 3.3. Layer Normalization 유/무
+<center><img src='{{ "/assets/images/proxy_13.PNG" | relative_url }}' width="600" height="250"></center>
+
+
+#### 3.4. Class Balanced Sampling 실험
+<center><img src='{{ "/assets/images/proxy_14.PNG" | relative_url }}' width="500" height="250"></center>
 
 
 ---
