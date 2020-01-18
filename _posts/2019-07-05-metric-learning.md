@@ -11,7 +11,7 @@ comments: true
 Image든 Character든 다양한 상황에서 Object 간 유사도를 측정하기 위해서는 어떻게 해야 할까? 사람이라면 같은 물체인 공이라고 해도 축구공과 농구공의 차이를 쉽게 판단할 수 있다. 더 나아가면 같은 축구공이라도 다른 브랜드에서 만들어 약간의 차이가 있는 점도 구분할 수 있을 것이다.  
 그렇다면 컴퓨터는 이를 어떻게 구분할 수 있을까? 간단하게 생각하면 Machine Learning으로 두 Image들의 차이를 구분해줄 Feature를 만들어서 학습시키면 될 것이다. 하지만, 열심히 데이터를 모아서 학습해도 또 다른 class의 물체가 등장하면 이를 구분하기 어려울 것이다. 이런 문제점을 해결하기 위해 One-shot Learning이라는 방법이 등장했다.
 
-<center><img src='{{ "/assets/images/study/similarity-img-01.png" | relative_url }}' width="400" height="400"></center>
+<center><img src='{{ "/assets/images/study/similarity-img-01.png" | relative_url }}' width="450" height="400"></center>
 One-shot Learning은 말 그대로 1장의 Image만 있어도 그 object를 인식할 수 있다는 의미다. 구체적으로는 다양한 방법으로 이를 실천할 수 있겠지만, 가장 간단한 모델로는 kNN Clustering을 예로 들 수 있다.
 왼쪽의 그림을 예로 One-shot Learning의 학습법을 살펴볼 수 있다. CNN을 기준으로 설명하면, CNN은 널리 알려진 모델 구조로 특히 Image에 대해 뛰어난 Feature 추출 성능을 갖는다. 이런 특성을 이용하여 위의 Verification Tasks에서는 CNN 모델의 Feature 추출 성능을 올리기 위해 대량의 데이터에 대해 parameter들을 학습한다. 학습된 모델은 실제로 test를 하고자 하는 task로 Transfer Learning을 진행한다. 이와 같은 Transfer Knowledge를 통해 다양한 object(또는 instance)를 인식할 수 있도록 한다.
 
@@ -25,7 +25,7 @@ Reference:
 해결법은 앞서 설명된 Transfer Learning을 적용하여 유사하거나 다양한 object를 갖는 데이터셋에서 충분히 학습된 모델을 해결하고자 하는 task로 갖고 오는 것이다. 또한, 막단의 분류기로서의 부분을 Distance Metric을 계산하는 모양으로 변형하여 parameter를 줄이고 서로간의 유사도를 측정할 수 있게 해준다.
 
 #### 2-1. Siamese Network
-<center><img src='{{ "/assets/images/study/similarity-img-02.jpg" | relative_url }}' width="500" height="200"></center>
+<center><img src='{{ "/assets/images/study/similarity-img-02.jpg" | relative_url }}' width="500" height="250"></center>
 Google에서 Face Recognition을 수행하기 위해 만들었던 Siamese Network는 Image분야에서 Similarity 학습을 위한 가장 기본적인 Deep Network 구조로 볼 수 있다. 샴(Siamese)이라는 말 그대로 같은 구조의 CNN 모델을 서로 다른 Image에 대해 수행하여 얻은 Feature Vector를 L1 Distance(L1 Norm)을 계산하여 두 Image간의 유사도를 측정한다.  
 유사도 측정을 위한 Loss는 Contrasitive Loss라고도 부르며 Image1에 대한 Embedding Vector X1과 Image2에 대한 Vector X2를 D(X1, X2)와 같이 계산 후, Sigmoid를 통해 0에서 1사이로 Mapping하여 두 Image간의 유사도를 표현한다.</p>
 
@@ -35,7 +35,7 @@ Paper : [https://arxiv.org/abs/1503.03832](https://arxiv.org/abs/1503.03832)
 <center><img src='{{ "/assets/images/study/similarity-img-03.png" | relative_url }}' width="300" height="100"></center>
 Triplet Network는 Siamese Network을 조금 더 발전시킨 것이다. 기존의 2개의 Image간 유사도를 측정하였다면, Anchor라 불리우는 Reference Image를 사이에 두고 같은 Class인 Positive Sample과 다른 Class인 Negative Sample을 하나의 Pair로 하여 말 그대로 Triplet(세 쌍둥이)를 형성한다.</p>
 
-<center><img src='{{ "/assets/images/study/similarity-img-04.jpg" | relative_url }}' width="300" height="300"></center>
+<center><img src='{{ "/assets/images/study/similarity-img-04.jpg" | relative_url }}' width="300" height="200"></center>
 학습의 진행은 아래의 그림과 같다. Anchor와 Positive의 관계는 서로를 Pull하는 효과를 보이고, Anchor와 Negative는 서로를 Push하여 같은 class간 variation은 작고, 다른 class간 variation은 크게 만드는 효과가 있다.  
 Siamese와 또 다른 점이 하나 있는데, Margin이라는 변수가 추가되어 학습을 돕는다. Margin은 아래 그림과 같은 역할을 담당한다. 적절한 크기의 Margin을 Loss Term에 추가함으로써, Anchor-Positive간 거리와 Anchor-Negative간 거리를 조절하고 학습의 수렴을 돕는다.
 
