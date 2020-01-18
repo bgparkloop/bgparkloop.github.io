@@ -55,5 +55,5 @@ Triplet Network 학습에 있어서 Pair의 Selection은 매우 중요하다. �
 <span style="width: 400px" class="image left"><img src="{{ '/assets/images/study/similarity-img-05.png' | relative_url }}" alt="" /></span>왼쪽 그림을 보면 그림의 왼쪽부분이 이전부터 사용해오던 Triplet의 개념이다. 여기서 저자는 Proxy 개념을 도입하여, 해당 Class를 대표하는 1개의 Embedding Vector를 선정하여 이 Vector와 같은 Class들의 Embedding Vector의 Distance를 줄이고 타 Class의 Proxy Vector와 Distance는 멀게하여 적은 연산량으로도 매우 효율적인 Metric Learning을 진행할 수 있게 하였다. 심지어 여기서는 Softmax를 사용하여 Multi class learning을 진행한다.  
 기존의 Triplet에서 같은 모델로 3번이나 Feature를 추출하여 많은 GPU Memory 소모와좋은 Sampling을 하기 위한 많은 연산이 필요없어져 그냥 output이 좀 더 긴 vector로 된 Classification이 되어 Large Batch가 가능하게 되었다. (말 그대로 학습 효율이 엄청 올라버렸다.) 실제로 Triplet과 Proxy based method로 Fashion MNIST 같은 것을 돌려보면 학습하는 속도도 결과도 많은 차이를 보여준다.
 
-Paper : [https://arxiv.org/pdf/1703.07464.pdf](https://arxiv.org/pdf/1703.07464.pdf)
+Paper : [https://arxiv.org/pdf/1703.07464.pdf](https://arxiv.org/pdf/1703.07464.pdf)  
 Github : [https://github.com/dichotomies/proxy-nca](https://github.com/dichotomies/proxy-nca)
