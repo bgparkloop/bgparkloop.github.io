@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "[Study] Deep Learning: Image Augmentatio"
+title: "[Study] Deep Learning: Image Augmentation"
 categories: [deep learning]
 tags: [cnn, image, augmentation]
 fullview: true
@@ -46,7 +46,7 @@ Cutout은 Label은 1개를 그대로 사용하지만, 이미지의 일부를 cut
 CutMix는 Mixup과 Cutout을 합성한 것으로 Cutout하여 제거한 부분에 다른 Label 이미지를 끼워넣는다. 당연히 Label도 이미지 비율만큼 나눠진다.
 굉장히 특이한 방식의 augmentation인데 이 중 CutMix가 가장 좋은 성능을 보인다. 하지만, Classification이 아닌 Segmentation에서 이와 같은 Augmentation을 진행할 경우 오히려 성능이 떨어진다. (생각에는 prediction된 pixel의 정확도가 보장되지 못하기 때문인 것 같다.)
 
-Paper : [https://www.researchgate.net/publication/333078138_CutMix_Regularization_Strategy_to_Train_Strong_Classifiers_with_Localizable_Features](https://www.researchgate.net/publication/333078138_CutMix_Regularization_Strategy_to_Train_Strong_Classifiers_with_Localizable_Features)
+Paper : [link](https://www.researchgate.net/publication/333078138_CutMix_Regularization_Strategy_to_Train_Strong_Classifiers_with_Localizable_Features)
 <br><br>
 이 외에도 많은 방법들이 존재하고, 또 데이터마다 특색있는 Augmentation을 customization할 수 있을 것이다. Augmentation은 Deep learning학습에 있어 빠질 수 없는 부분이고 data별로 맞춤형이 필요하기 때문에 다양한 augmentation 기법을 알아놓고 그에 맞게 사용하는 연습이 필요할 것 같다.
 
