@@ -34,7 +34,7 @@ Scalability issue를 해결하기 위한 Mini-batch안에 최적의 class수를 
 ---
 ### 3. Experimental Results
 #### 3.1. Loss Function Comparison
-<center><img src='{{ "/assets/images/proxy_12.PNG" | relative_url }}' width="500" height="800"></center>
+<center><img src='{{ "/assets/images/proxy_12.PNG" | relative_url }}' width="500" height="700"></center>
 위 그림은 각 Loss function 별로 성능을 비교한 것이다. Loss Function 옆의 작은 숫자는 embedding vector의 크기를 나타낸 것이다. SOP, CARS-196 dataset에서는 NormSoftmax가 가장 뛰어난 성능을 보였으며, CUB-200에서도 1~2위를 다투는 좋은 성능을 보여준다. Table의 성능 비교를 통해 NormSoftmax가 학습 효율성이 좋은 Loss Function임이 증명된다.
 
 #### 3.2. Embedding Dimensionality
