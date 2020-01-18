@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "[Paper Review] Metric Learning 02"
+title: "[Paper Review] Classification is a Strong Baseline for Deep Metric Learning"
 categories: [deep learning]
 tags: [metric learning]
 fullview: true

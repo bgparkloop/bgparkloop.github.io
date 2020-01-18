@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "[Paper Review] Metric Learning 01"
+title: "[Paper Review] No Fuss Distance Metric Learning using Proxies"
 categories: [deep learning]
 tags: [metric learning]
 fullview: true

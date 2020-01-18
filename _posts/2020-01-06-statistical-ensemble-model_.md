@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "[Paper Review] Statistical Ensemble Model"
+title: "[Paper Review] Improving Automated Pediatric Bone Age Estimation Using Ensembles of Models from the 2017 RSNA Machine Learning Challenge"
 categories: [machine learning]
 tags: [cnn, ensemble, statistics]
 fullview: true
