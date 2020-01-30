@@ -226,69 +226,69 @@ python object_detection/builders/model_builder_test.py를 실행하여 아래와
 학습결과를 저장할 폴더를 생성한다.
 - 학습결과 폴더 : training
   - training 폴더 안에는 학습하고자 하는 label정보도 들어가야 한다. 그러므로 labelmap.pbtxt라는 문서를 하나 만들어 클래스 수만큼 다음과 같이 넣는다.
-~~~
-# Class 수만큼 item을 정의해야함. id 0번은 배경이므로 1번부터 시작.
-item {
-  id: 1
-  name: 'normal'
-}
-item {
-  id: 2
-  name: 'abnormal'
-}
-~~~
+    ~~~
+        # Class 수만큼 item을 정의해야함. id 0번은 배경이므로 1번부터 시작.
+        item {
+        id: 1
+        name: 'normal'
+        }
+        item {
+        id: 2
+        name: 'abnormal'
+        }
+        ~~~
 
-  - training 폴더에는 앞서 언급한 pipline.config파일을 옮겨두고, ssdlite_mobilenet_v2_coco.config와 같이 원하는 이름으로 변경해준다.(꼭 변경안해도 상관은 없다) 그 후 아래 부분들을 수정한다.
-~~~
-# 검출하고자하는 클래스 수로 수정한다.
-num_classes: 90
-...
-# 기본 사이즈를 그대로 쓰거나 원한다면 사이즈를 변경한다.
-image_resizer {
-      fixed_shape_resizer {
-        height: 300
-        width: 300
-      }
-    }
-...
-# batch_size는 메모리가 되는만큼 크게 잡는 것이 학습효율에 좋다.
-train_config {
-  batch_size: 24
-# data_augmentation_options의 경우는 뒤에 따로 설명한다.
-...
-# fine_tune_checkpoint에는 우리가 받았던 pretrained model이 있는 폴더 경로를 PATH_TO_BE_CONFIGURED에 넣으면 된다.
-fine_tune_checkpoint: "PATH_TO_BE_CONFIGURED/model.ckpt"
-# num_steps는 학습을 몇 번 반복할지 결정한다. 기본이 20만번인데, class수와 문제 난이도에 따라 크기는 달리하면 된다.
-num_steps: 200000
-...
+        - training 폴더에는 앞서 언급한 pipline.config파일을 옮겨두고, ssdlite_mobilenet_v2_coco.config와 같이 원하는 이름으로 변경해준다.(꼭 변경안해도 상관은 없다) 그 후 아래 부분들을 수정한다.
+        ~~~
+        # 검출하고자하는 클래스 수로 수정한다.
+        num_classes: 90
+        ...
+        # 기본 사이즈를 그대로 쓰거나 원한다면 사이즈를 변경한다.
+        image_resizer {
+            fixed_shape_resizer {
+                height: 300
+                width: 300
+            }
+            }
+        ...
+        # batch_size는 메모리가 되는만큼 크게 잡는 것이 학습효율에 좋다.
+        train_config {
+        batch_size: 24
+        # data_augmentation_options의 경우는 뒤에 따로 설명한다.
+        ...
+        # fine_tune_checkpoint에는 우리가 받았던 pretrained model이 있는 폴더 경로를 PATH_TO_BE_CONFIGURED에 넣으면 된다.
+        fine_tune_checkpoint: "PATH_TO_BE_CONFIGURED/model.ckpt"
+        # num_steps는 학습을 몇 번 반복할지 결정한다. 기본이 20만번인데, class수와 문제 난이도에 따라 크기는 달리하면 된다.
+        num_steps: 200000
+        ...
 
-# label_map_path에는 앞서 만든 labelmap.pbtxt의 경로를 넣어준다.
-# tf_record_input_reader에서 input_path는 뒤에 images에 있는 파일들을 record파일로 변경하여 그 경로를 입력한다.
-train_input_reader {
-  label_map_path: "PATH_TO_BE_CONFIGURED/mscoco_label_map.pbtxt"
-  tf_record_input_reader {
-    input_path: "PATH_TO_BE_CONFIGURED/mscoco_train.record"
-  }
-}
-# num_examples는 몇 개의 샘플을 테스트 할 것인지 결정한다. images/test에 있는 이미지 수보다 크면 안된다.
-# max_evals는 최대 테스트할 이미지 수이다.
-# 기본에는 없지만 num_visualizations라는 변수를 추가하면 적혀있는 숫자만큼의 test 이미지에 대한 결과를 tensorboard에서 보여준다.
-eval_config {
-  num_examples: 8000
-  max_evals: 10
-  use_moving_averages: false
-  # num_visualizations: 20
-}
-# train_input_read와 같다.
-eval_input_reader {
-  label_map_path: "PATH_TO_BE_CONFIGURED/mscoco_label_map.pbtxt"
-  shuffle: false
-  num_readers: 1
-  tf_record_input_reader {
-    input_path: "PATH_TO_BE_CONFIGURED/mscoco_val.record"
-  }
-}
-~~~
+        # label_map_path에는 앞서 만든 labelmap.pbtxt의 경로를 넣어준다.
+        # tf_record_input_reader에서 input_path는 뒤에 images에 있는 파일들을 record파일로 변경하여 그 경로를 입력한다.
+        train_input_reader {
+        label_map_path: "PATH_TO_BE_CONFIGURED/mscoco_label_map.pbtxt"
+        tf_record_input_reader {
+            input_path: "PATH_TO_BE_CONFIGURED/mscoco_train.record"
+        }
+        }
+        # num_examples는 몇 개의 샘플을 테스트 할 것인지 결정한다. images/test에 있는 이미지 수보다 크면 안된다.
+        # max_evals는 최대 테스트할 이미지 수이다.
+        # 기본에는 없지만 num_visualizations라는 변수를 추가하면 적혀있는 숫자만큼의 test 이미지에 대한 결과를 tensorboard에서 보여준다.
+        eval_config {
+        num_examples: 8000
+        max_evals: 10
+        use_moving_averages: false
+        # num_visualizations: 20
+        }
+        # train_input_read와 같다.
+        eval_input_reader {
+        label_map_path: "PATH_TO_BE_CONFIGURED/mscoco_label_map.pbtxt"
+        shuffle: false
+        num_readers: 1
+        tf_record_input_reader {
+            input_path: "PATH_TO_BE_CONFIGURED/mscoco_val.record"
+        }
+        }
+    ~~~
 
 ---
 ### 3. 학습 진행
