@@ -71,11 +71,159 @@ python object_detection/builders/model_builder_test.py를 실행하여 아래와
 **'ssd_mobilenet_v2_coco'**를 받고 압축을 풀면 **'ssd_mobilenet_v2_coco_2018_03_29'**와 같은 폴더에 다음과 같은 것들이 있다.
 다른 것들은 크게 신경안써도 되고 pipline.config만 따로 옮겨주면 된다.
 
-#### 2.2. 데이터 / 설정 준비
-데이터를 넣어둘 폴더와 학습결과를 저장할 폴더를 생성한다.
-아래는 예시이다.
+#### 2.2. 데이터 준비
+데이터를 넣어둘 폴더를 생성한다.
 - 데이터 폴더 : images
   - images폴더 안에는 train과 test 폴더를 만들어 나중에 필요한 데이터를 넣는다.
+
+1. Tensorflow API에 사용되는 annotation 파일들은 labelImg를 기준으로 작성되므로, 해당 프로그램을 통해 annotation하여 xml파일들을 만든다.
+2. 작업한 이미지와 xml파일들을 images폴더에서 train과 test에 적절하게 나눠넣는다.
+3. images폴더 밖에서 **xml_to_csv.py** 파일을 이용하여 csv형태로 변환한다.
+  ~~~
+    import os
+    import glob
+    import pandas as pd
+    import xml.etree.ElementTree as ET
+    ​
+    def xml_to_csv(path):
+        xml_list = []
+        for xml_file in glob.glob(path + '/*.xml'):
+            tree = ET.parse(xml_file)
+            root = tree.getroot()
+            for member in root.findall('object'):
+                value = (root.find('filename').text,
+                        int(root.find('size')[0].text),
+                        int(root.find('size')[1].text),
+                        member[0].text,
+                        int(member[4][0].text),
+                        int(member[4][1].text),
+                        int(member[4][2].text),
+                        int(member[4][3].text)
+                        )
+                xml_list.append(value)
+        column_name = ['filename', 'width', 'height', 'class', 'xmin', 'ymin', 'xmax', 'ymax']
+        xml_df = pd.DataFrame(xml_list, columns=column_name)
+        return xml_df
+
+    def main():
+        for folder in ['train','test']:
+            image_path = os.path.join(os.getcwd(), ('images/' + folder))
+            xml_df = xml_to_csv(image_path)
+            xml_df.to_csv(('images/' + folder + '_labels.csv'), index=None)
+            print('Successfully converted xml to csv.')
+    ​
+    main()
+  ~~~
+4. images폴더 밖에서 **generate_tfrecord.py** 파일을 이용하여 record형태로 변환한다. 이 때, 코드 내에서 class_text_to_int 함수의 return 부분을 학습하고자 하는 class들로 수정하여야 한다.
+  ~~~
+    """
+    Usage:
+    # From tensorflow/models/
+    # Create train data:
+    python generate_tfrecord.py --csv_input=images/train_labels.csv --image_dir=images/train --output_path=train.record
+    ​
+    # Create test data:
+    python generate_tfrecord.py --csv_input=images/test_labels.csv  --image_dir=images/test --output_path=test.record
+    """
+    from __future__ import division
+    from __future__ import print_function
+    from __future__ import absolute_import
+    ​
+    import os
+    import io
+    import pandas as pd
+    import tensorflow as tf
+    ​
+    from PIL import Image
+    from object_detection.utils import dataset_util
+    from collections import namedtuple, OrderedDict
+    ​
+    flags = tf.app.flags
+    flags.DEFINE_string('csv_input', '', 'Path to the CSV input')
+    flags.DEFINE_string('image_dir', '', 'Path to the image directory')
+    flags.DEFINE_string('output_path', '', 'Path to output TFRecord')
+    FLAGS = flags.FLAGS
+    ​    ​
+    norm_list = ['normal', 'Normal']
+    abnorm_list = ['abnormal', Abnormal]
+    ​    ​
+    # TO-DO replace this with label map
+    def class_text_to_int(row_label):
+        if row_label in norm_list:
+            return 1
+        elif row_label in abnorm_list:
+            return 2
+        else:
+            return 3
+    ​
+    ​
+    def split(df, group):
+        data = namedtuple('data', ['filename', 'object'])
+        gb = df.groupby(group)
+        return [data(filename, gb.get_group(x)) for filename, x in zip(gb.groups.keys(), gb.groups)]
+    ​
+    ​
+    def create_tf_example(group, path):
+        with tf.gfile.GFile(os.path.join(path, '{}'.format(group.filename)), 'rb') as fid:
+            encoded_jpg = fid.read()
+        encoded_jpg_io = io.BytesIO(encoded_jpg)
+        image = Image.open(encoded_jpg_io)
+        width, height = image.size
+    ​
+        filename = group.filename.encode('utf8')
+        image_format = b'jpg'
+        xmins = []
+        xmaxs = []
+        ymins = []
+        ymaxs = []
+        classes_text = []
+        classes = []
+    ​
+        for index, row in group.object.iterrows():
+            xmins.append(row['xmin'] / width)
+            xmaxs.append(row['xmax'] / width)
+            ymins.append(row['ymin'] / height)
+            ymaxs.append(row['ymax'] / height)
+            classes_text.append(row['class'].encode('utf8'))
+            classes.append(class_text_to_int(row['class']))
+    ​
+        tf_example = tf.train.Example(features=tf.train.Features(feature={
+            'image/height': dataset_util.int64_feature(height),
+            'image/width': dataset_util.int64_feature(width),
+            'image/filename': dataset_util.bytes_feature(filename),
+            'image/source_id': dataset_util.bytes_feature(filename),
+            'image/encoded': dataset_util.bytes_feature(encoded_jpg),
+            'image/format': dataset_util.bytes_feature(image_format),
+            'image/object/bbox/xmin': dataset_util.float_list_feature(xmins),
+            'image/object/bbox/xmax': dataset_util.float_list_feature(xmaxs),
+            'image/object/bbox/ymin': dataset_util.float_list_feature(ymins),
+            'image/object/bbox/ymax': dataset_util.float_list_feature(ymaxs),
+            'image/object/class/text': dataset_util.bytes_list_feature(classes_text),
+            'image/object/class/label': dataset_util.int64_list_feature(classes),
+        }))
+        return tf_example
+    ​
+    ​
+    def main(_):
+        writer = tf.python_io.TFRecordWriter(FLAGS.output_path)
+        path = os.path.join(os.getcwd(), FLAGS.image_dir)
+        examples = pd.read_csv(FLAGS.csv_input)
+        grouped = split(examples, 'filename')
+        for group in grouped:
+            tf_example = create_tf_example(group, path)
+            writer.write(tf_example.SerializeToString())
+    ​
+        writer.close()
+        output_path = os.path.join(os.getcwd(), FLAGS.output_path)
+        print('Successfully created the TFRecords: {}'.format(output_path))
+    ​
+    ​
+    if __name__ == '__main__':
+        tf.app.run()
+  ~~~
+
+#### 2.3. 설정 준비
+학습결과를 저장할 폴더를 생성한다.
 - 학습결과 폴더 : training
   - training 폴더 안에는 학습하고자 하는 label정보도 들어가야 한다. 그러므로 labelmap.pbtxt라는 문서를 하나 만들어 클래스 수만큼 다음과 같이 넣는다.
 ~~~
