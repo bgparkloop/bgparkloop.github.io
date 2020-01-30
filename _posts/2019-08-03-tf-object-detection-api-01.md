@@ -77,6 +77,19 @@ python object_detection/builders/model_builder_test.py를 실행하여 아래와
 - 데이터 폴더 : images
   - images폴더 안에는 train과 test 폴더를 만들어 나중에 필요한 데이터를 넣는다.
 - 학습결과 폴더 : training
+  - training 폴더 안에는 학습하고자 하는 label정보도 들어가야 한다. 그러므로 labelmap.pbtxt라는 문서를 하나 만들어 클래스 수만큼 다음과 같이 넣는다.
+~~~
+# Class 수만큼 item을 정의해야함. id 0번은 배경이므로 1번부터 시작.
+item {
+    id: 1
+    name: 'normal'
+}
+item {
+    id: 2
+    name: 'abnormal'
+}
+~~~
+
   - training 폴더에는 앞서 언급한 pipline.config파일을 옮겨두고, ssdlite_mobilenet_v2_coco.config와 같이 원하는 이름으로 변경해준다.(꼭 변경안해도 상관은 없다) 그 후 아래 부분들을 수정한다.
 
 ~~~
@@ -102,18 +115,24 @@ fine_tune_checkpoint: "PATH_TO_BE_CONFIGURED/model.ckpt"
 num_steps: 200000
 ...
 
-#
+# label_map_path에는 앞서 만든 labelmap.pbtxt의 경로를 넣어준다.
+# tf_record_input_reader에서 input_path는 뒤에 images에 있는 파일들을 record파일로 변경하여 그 경로를 입력한다.
 train_input_reader {
   label_map_path: "PATH_TO_BE_CONFIGURED/mscoco_label_map.pbtxt"
   tf_record_input_reader {
     input_path: "PATH_TO_BE_CONFIGURED/mscoco_train.record"
   }
 }
+# num_examples는 몇 개의 샘플을 테스트 할 것인지 결정한다. images/test에 있는 이미지 수보다 크면 안된다.
+# max_evals는 최대 테스트할 이미지 수이다.
+# 기본에는 없지만 num_visualizations라는 변수를 추가하면 적혀있는 숫자만큼의 test 이미지에 대한 결과를 tensorboard에서 보여준다.
 eval_config {
   num_examples: 8000
   max_evals: 10
   use_moving_averages: false
+  # num_visualizations: 20
 }
+# train_input_read와 같다.
 eval_input_reader {
   label_map_path: "PATH_TO_BE_CONFIGURED/mscoco_label_map.pbtxt"
   shuffle: false
@@ -124,19 +143,7 @@ eval_input_reader {
 }
 ~~~
 
- - training 폴더 안에는 학습하고자 하는 label정보도 들어가야 한다. 그러므로 labelmap.pbtxt라는 문서를 하나 만들어 클래스 수만큼 다음과 같이 넣는다.
-
-~~~
-# Class 수만큼 item을 정의해야함. id 0번은 배경이므로 1번부터 시작.
-item {
-    id: 1
-    name: 'normal'
-}
-item {
-    id: 2
-    name: 'abnormal'
-}
-~~~
+ 
 
 
 
