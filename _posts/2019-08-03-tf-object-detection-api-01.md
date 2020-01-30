@@ -236,10 +236,10 @@ python object_detection/builders/model_builder_test.py를 실행하여 아래와
         id: 2
         name: 'abnormal'
         }
-        ~~~
+    ~~~
 
-        - training 폴더에는 앞서 언급한 pipline.config파일을 옮겨두고, ssdlite_mobilenet_v2_coco.config와 같이 원하는 이름으로 변경해준다.(꼭 변경안해도 상관은 없다) 그 후 아래 부분들을 수정한다.
-        ~~~
+  - training 폴더에는 앞서 언급한 pipline.config파일을 옮겨두고, ssdlite_mobilenet_v2_coco.config와 같이 원하는 이름으로 변경해준다.(꼭 변경안해도 상관은 없다) 그 후 아래 부분들을 수정한다.
+    ~~~
         # 검출하고자하는 클래스 수로 수정한다.
         num_classes: 90
         ...
