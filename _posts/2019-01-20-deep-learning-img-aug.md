@@ -50,3 +50,11 @@ Paper : [link](https://www.researchgate.net/publication/333078138_CutMix_Regular
 <br><br>
 이 외에도 많은 방법들이 존재하고, 또 데이터마다 특색있는 Augmentation을 customization할 수 있을 것이다. Augmentation은 Deep learning학습에 있어 빠질 수 없는 부분이고 data별로 맞춤형이 필요하기 때문에 다양한 augmentation 기법을 알아놓고 그에 맞게 사용하는 연습이 필요할 것 같다.
 
+#### 9. Elastic Distortion
+기존의 Rotation, Shearing, Translation 등의 Affine 변형에 Probabilistic spin을 주어 떨림을 준 것과 같이 자연스러운 이미지 변형을 주는 방법이다. 일반적으로 Biomedical data에 많이 사용된다. Alpha와 Sigma라는 두 개의 파라미터를 사용하는데 일반적으로 Alpha와 Sigma를 10:1로 조합하면 자연스럽게 떨리는 이미지를 생성할 수 있다.
+
+---
+Python 패키지 중에 imgaug라는 멋진 패키지가 있는데, 이를 이용하면 왠만한 기본 image augmentation은 전부 사용 가능하다.
+친절하게 예시도 주어져 있으며, 한글 블로그 등에도 사용법들이 많이 나와 있으므로 잘써주도록 하자.
+
+Ref : [https://imgaug.readthedocs.io/en/latest/](https://imgaug.readthedocs.io/en/latest/)
