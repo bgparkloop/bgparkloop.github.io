@@ -75,9 +75,55 @@ python object_detection/builders/model_builder_test.py를 실행하여 아래와
 데이터를 넣어둘 폴더와 학습결과를 저장할 폴더를 생성한다.
 아래는 예시이다.
 - 데이터 폴더 : images
- - images폴더 안에는 train과 test 폴더를 만들어 나중에 필요한 데이터를 넣는다.
+  - images폴더 안에는 train과 test 폴더를 만들어 나중에 필요한 데이터를 넣는다.
 - 학습결과 폴더 : training
- - training 폴더에는 앞서 언급한 pipline.config파일을 옮겨두고, ssdlite_mobilenet_v2_coco.config와 같이 원하는 이름으로 변경해준다.(꼭 변경안해도 상관은 없다)
+  - training 폴더에는 앞서 언급한 pipline.config파일을 옮겨두고, ssdlite_mobilenet_v2_coco.config와 같이 원하는 이름으로 변경해준다.(꼭 변경안해도 상관은 없다) 그 후 아래 부분들을 수정한다.
+
+~~~
+# 검출하고자하는 클래스 수로 수정한다.
+num_classes: 90
+...
+# 기본 사이즈를 그대로 쓰거나 원한다면 사이즈를 변경한다.
+image_resizer {
+      fixed_shape_resizer {
+        height: 300
+        width: 300
+      }
+    }
+...
+# batch_size는 메모리가 되는만큼 크게 잡는 것이 학습효율에 좋다.
+train_config {
+  batch_size: 24
+# data_augmentation_options의 경우는 뒤에 따로 설명한다.
+...
+# fine_tune_checkpoint에는 우리가 받았던 pretrained model이 있는 폴더 경로를 PATH_TO_BE_CONFIGURED에 넣으면 된다.
+fine_tune_checkpoint: "PATH_TO_BE_CONFIGURED/model.ckpt"
+# num_steps는 학습을 몇 번 반복할지 결정한다. 기본이 20만번인데, class수와 문제 난이도에 따라 크기는 달리하면 된다.
+num_steps: 200000
+...
+
+#
+train_input_reader {
+  label_map_path: "PATH_TO_BE_CONFIGURED/mscoco_label_map.pbtxt"
+  tf_record_input_reader {
+    input_path: "PATH_TO_BE_CONFIGURED/mscoco_train.record"
+  }
+}
+eval_config {
+  num_examples: 8000
+  max_evals: 10
+  use_moving_averages: false
+}
+eval_input_reader {
+  label_map_path: "PATH_TO_BE_CONFIGURED/mscoco_label_map.pbtxt"
+  shuffle: false
+  num_readers: 1
+  tf_record_input_reader {
+    input_path: "PATH_TO_BE_CONFIGURED/mscoco_val.record"
+  }
+}
+~~~
+
  - training 폴더 안에는 학습하고자 하는 label정보도 들어가야 한다. 그러므로 labelmap.pbtxt라는 문서를 하나 만들어 클래스 수만큼 다음과 같이 넣는다.
 
 ~~~
