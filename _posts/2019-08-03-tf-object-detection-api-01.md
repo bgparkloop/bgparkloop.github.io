@@ -229,17 +229,16 @@ python object_detection/builders/model_builder_test.py를 실행하여 아래와
 ~~~
 # Class 수만큼 item을 정의해야함. id 0번은 배경이므로 1번부터 시작.
 item {
-    id: 1
-    name: 'normal'
+  id: 1
+  name: 'normal'
 }
 item {
-    id: 2
-    name: 'abnormal'
+  id: 2
+  name: 'abnormal'
 }
 ~~~
 
   - training 폴더에는 앞서 언급한 pipline.config파일을 옮겨두고, ssdlite_mobilenet_v2_coco.config와 같이 원하는 이름으로 변경해준다.(꼭 변경안해도 상관은 없다) 그 후 아래 부분들을 수정한다.
-
 ~~~
 # 검출하고자하는 클래스 수로 수정한다.
 num_classes: 90
@@ -291,7 +290,60 @@ eval_input_reader {
 }
 ~~~
 
- 
+---
+### 3. 학습 진행
+#### 3.1. Training
+이제 준비는 모두 끝났으니 본격적으로 학습을 진행한다. 아래와 같은 명령어를 입력하여 학습을 진행한다.
+- YOUR_API_PATH/models/research/object_detection/legacy/train.py --logtostderr --train_dir=training/ --pipeline_config_path=training/YOUR_CONFIG_FILE
 
+config파일에 지정한 설정대로 학습이 진행되고, training폴더에는 중간중간마다 model checkpoint파일이 저장된다. 학습이 진행되는 그래프를 확인하려면 tensorboard를 설치 후 아래와 같은 명령어로 살펴볼 수 있다.
+- tensorboard --logdir=./training
 
+#### 3.2. Evaluation
+테스트를 진행하려면, training폴더안에 eval폴더를 만든 후 다음과 같이 명령어를 실행한다.
+- YOUR_API_PATH/models/research/object_detection/legacy/eval.py --logtostderr --checkpoint_dir=training/  --pipeline_config_path=training/YOUR_CONFIG_FILE --eval_dir=training/eval
 
+위의 명령어를 실행하면, test폴더에 있는 이미지들로 결과를 내어 각 Class마다 mAP를 계산하여 알려준다. config파일에서 num_visualizations를 추가하였다면 tensorboard에 GRAPH옆에 IMAGE탭이 새로 생기면서 우리가 학습한 모델의 성능을 눈으로 확인이 가능하다.
+
+---
+### 4. 번외 임베디드/모바일 환경에서의 딥러닝 모델 사용
+Mobile이나 임베디드 환경에서 사용하려면 경량화된 Model로 변경해야한다. Tensorflow API에서 제공하는 export_tflite_xxx_graph.py와 같은 파일로 우리가 학습한 model을 tflite로 변경 가능하다. 하지만, 한 번에 변환되지 않고 ckpt -> pb -> tflite의 변환과정을 거친다.
+
+#### 4.1. pb파일로 변환
+아래는 ssdlite_mobilenet에 대한 예제이다. 각자에서 적용할 때는 path부분들을 자신들의 환경에 맞게 변경해야한다. 명령어를 입력하면, tflite_graph.pb와 tflite_graph.pbtxt파일이 생성된다.
+
+~~~
+python export_tflite_ssd_graph.py \
+--pipeline_config_path=YOUR_TRAINED_MODEL_DIR_PATH/ssdlite_mobilenet_v2_coco.config \
+--trained_checkpoint_prefix=YOUR_TRAINED_MODEL_DIR_PATH/model.ckpt-107 \
+--output_directory=. \
+--add_postprocessing_op=true
+~~~
+
+#### 4.2. pb파일을 tflite파일로 변환
+변환된 pb파일을 tflite로 변환하기위해서는 bazel설치가 필요하다.
+Windows에서 설치는 검색하면 나오므로... Linux 기준으로
+- sudo apt-get install bazel=1.0.0
+
+bazel 이용 시 tensorflow가 필요하므로 git으로 다운로드한다.
+- git clone https://github.com/tensorflow/tensorflow.git
+심지어 tensorflow 버전이 높으면 변환이 어려우니 tensorflow 버전을 1.12.0으로 하면 안정적으로 가능하다.
+
+그 후 tflite로 변환할 pb와 pbtxt파일이 있는 폴더를 OUTPUT_DIR로 지정
+- export OUTPUT_DIR=YOUR_PB_DIR
+
+마지막으로, 설치한 bazel을 이용하여 변환작업을 실행한다.
+이 때 opt다음에 나오는 tensorflow/lite/toco부분이 우리가 git으로 받은 tensorflow폴더이다.
+input_shapes의 경우도 처음 학습할 때 shape과 동일하게 해준다.
+
+- bazel run -c opt tensorflow/lite/toco:toco -- \
+ --input_file=$OUTPUT_DIR/tflite_graph.pb \
+ --output_file=$OUTPUT_DIR/ssd_mobilenet.tflite \
+ --input_shapes=1,300,300,3 \
+ --input_arrays=normalized_input_image_tensor \
+ --output_arrays='TFLite_Detection_PostProcess','TFLite_Detection_PostProcess:1','TFLite_Detection_PostProcess:2','TFLite_Detection_PostProcess:3' \
+ --inference_type=FLOAT \
+--allow_custom_ops
+
+> INFO: Build completed successfully, 1 total action 나오면 성공
+> Ignoring unsupported type in list attribute with key '_output_types'가 나올 수 있는데 무시하면 됨
