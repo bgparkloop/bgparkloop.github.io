@@ -22,7 +22,7 @@ Computational Cost
 - C : Input Channel
 - K : Kernel Size
 - M : Output Channel
-Basic Convolutional Layer : <img style="vertical-align:middle" src="http://latex.codecogs.com/png.latex?\dpi{100}\bg_white K^2 CMHW)"/>
+Basic Convolutional Layer : <img style="vertical-align:middle" src="http://latex.codecogs.com/png.latex?\dpi{100}\bg_white K^2 CMHW"/>
 
 ---
 ### 2. Dilated Convolution Layer
@@ -32,7 +32,7 @@ Basic Convolutional Layer : <img style="vertical-align:middle" src="http://latex
 
 ---
 ### 3. Grouped Convolution Layer
-<center><img src='{{ "/assets/images/group-conv.png" | relative_url }}' width="300" height="300"></center>
+<center><img src='{{ "/assets/images/group-conv.png" | relative_url }}' width="450" height="300"></center>
 나머지는 일반적인 Convolution Layer와 같지만, Input의 Channel 단위를 group으로 나누어 계산하는 점이 다르다. N개의 채널이 있다면 이를 g만큼의 그룹으로 나누어 각 그룹마다 같은 kernel을 사용하여 연산량이 많이 줄어든다.
 > 병렬처리에 우수하며, 기존의 conv layer보다 연산량이 많이 줄어들고, 각 그룹에 높은 correlation을 갖는 channel 학습이 가능함.
 
@@ -43,13 +43,13 @@ Computational Cost
 - K : Kernel Size
 - M : Output Channel
 - g : # of Group
-Grouped Convolutional Layer : <img style="vertical-align:middle" src="http://latex.codecogs.com/png.latex?\dpi{100}\bg_white {(K^2 CMHW)})/2"/>
+Grouped Convolutional Layer : <img style="vertical-align:middle" src="http://latex.codecogs.com/png.latex?\dpi{100}\bg_white {(K^2 CMHW)}/g"/>
 
 ---
 ### 4. Separable Convolution Layer
 
 ### 4.1. Depth-wise(Channel-wise) Convolution Layer
-
+<center><img src='{{ "/assets/images/depth-conv.png" | relative_url }}' width="300" height="300"></center>
 
 Computational Cost
 - W : Input Width
@@ -57,10 +57,10 @@ Computational Cost
 - C : Input Channel
 - K : Kernel Size
 - M : Output Channel
-Basic Convolutional Layer : <img style="vertical-align:middle" src="http://latex.codecogs.com/png.latex?\dpi{100}\bg_white K^2 CMHW)"/>
+Basic Convolutional Layer : <img style="vertical-align:middle" src="http://latex.codecogs.com/png.latex?\dpi{100}\bg_white K^2 CMHW"/>
 
 #### 4.2. Point-wise Convolution Layer
-
+<center><img src='{{ "/assets/images/point-conv.png" | relative_url }}' width="300" height="300"></center>
 
 Computational Cost
 - W : Input Width
@@ -68,7 +68,7 @@ Computational Cost
 - C : Input Channel
 - K : Kernel Size
 - M : Output Channel
-Basic Convolutional Layer : <img style="vertical-align:middle" src="http://latex.codecogs.com/png.latex?\dpi{100}\bg_white K^2 CMHW)"/>
+Basic Convolutional Layer : <img style="vertical-align:middle" src="http://latex.codecogs.com/png.latex?\dpi{100}\bg_white K^2 CMHW"/>
 
 
 ---
