@@ -47,33 +47,30 @@ Grouped Convolutional Layer : <img style="vertical-align:middle" src="http://lat
 
 ---
 ### 4. Separable Convolution Layer
+Separable Conv Layer는 2개의 part로 나뉘며, 보통 이 2개의 layer를 합쳐서 separable conv layer로 사용한다.
 
 ### 4.1. Depth-wise(Channel-wise) Convolution Layer
 <center><img src='{{ "/assets/images/depth-conv.png" | relative_url }}' width="300" height="300"></center>
+기본 Conv layer에서 각 Channel별로 Kernel을 따로 둔다고 생각할 수 있다. 이렇게하면 각 Channel 별로 독립적인 Spatial Feature 추출이 가능해진다. Grouped Conv layer에서 g값이 Input Channel수와 같다고 보면 된다.
+Group의 수가 Input channel과 같고, 특성상 Input과 Output의 Channel수가 같으므로 연산량이 상당히 줄어든다.
 
 Computational Cost
-- W : Input Width
-- H : Input Height
-- C : Input Channel
-- K : Kernel Size
-- M : Output Channel
-Basic Convolutional Layer : <img style="vertical-align:middle" src="http://latex.codecogs.com/png.latex?\dpi{100}\bg_white K^2 CMHW"/>
+Depthwise Convolutional Layer : <img style="vertical-align:middle" src="http://latex.codecogs.com/png.latex?\dpi{100}\bg_white K^2 CHW"/>
 
 #### 4.2. Point-wise Convolution Layer
-<center><img src='{{ "/assets/images/point-conv.png" | relative_url }}' width="300" height="300"></center>
+<center><img src='{{ "/assets/images/point-conv.png" | relative_url }}' width="450" height="300"></center>
+1x1 Kernel을 이용한 굉장히 Tricky한 방법이다. Channel에 대해서만 다루는 특이한 Conv layer인데, 이런 특성을 이용하여 Channel 크기를 줄였다 늘였다하여 dimension 조절을 담당한다. 주로 channel 크기를 일시적으로 줄여서 dimension reduction 효과를 주는데 사용한다.
 
 Computational Cost
-- W : Input Width
-- H : Input Height
-- C : Input Channel
-- K : Kernel Size
-- M : Output Channel
-Basic Convolutional Layer : <img style="vertical-align:middle" src="http://latex.codecogs.com/png.latex?\dpi{100}\bg_white K^2 CMHW"/>
+Pointwise Convolutional Layer : <img style="vertical-align:middle" src="http://latex.codecogs.com/png.latex?\dpi{100}\bg_white CMHW"/>
 
+> Separable Conv Layer는 Depthwise 다음에 Pointwise를 연계하여 Spatial과 Channel 모두 아울러 기존 Conv layer와 유사한 동작을 수행한다. 기존 Conv layer보다 월등히 적은 parameter수를 갖기 때문에 Network를 깊게 만들 때 필수적인 Layer이다.
+Separable Convolutional Layer : <img style="vertical-align:middle" src="http://latex.codecogs.com/png.latex?\dpi{100}\bg_white CHW(K^2 + M)"/>
 
 ---
 ### 5. Transpose Convolution Layer
 <center><img src='{{ "/assets/images/transpose-conv.gif" | relative_url }}' width="300" height="300"></center>
+
 
 ---
 ### 6. 3D Convolution Layer
