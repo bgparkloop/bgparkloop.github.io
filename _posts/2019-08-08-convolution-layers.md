@@ -65,18 +65,37 @@ Computational Cost
 Pointwise Convolutional Layer : <img style="vertical-align:middle" src="http://latex.codecogs.com/png.latex?\dpi{100}\bg_white CMHW"/>
 
 > Separable Conv Layer는 Depthwise 다음에 Pointwise를 연계하여 Spatial과 Channel 모두 아울러 기존 Conv layer와 유사한 동작을 수행한다. 기존 Conv layer보다 월등히 적은 parameter수를 갖기 때문에 Network를 깊게 만들 때 필수적인 Layer이다.
+
 Separable Convolutional Layer : <img style="vertical-align:middle" src="http://latex.codecogs.com/png.latex?\dpi{100}\bg_white CHW(K^2 + M)"/>
 
 ---
-### 5. Transpose Convolution Layer
+### 5. Transposed Convolution Layer
 <center><img src='{{ "/assets/images/transpose-conv.gif" | relative_url }}' width="300" height="300"></center>
-
+Deconvolution, Upconvolution, Fractionally-stride convolution 등 다양한 방식으로 불린다. 주어진 입력에 대해 압축된 정보를 추출하는 것이 아닌, 압축된 정보(sparse)에서 더 자세하고 촘촘한 정보(dense)로 복원(?)하는 개념이다.
+왜 Transposed인지는 Reference 3번의 내용을 살펴보는 것이 빠를 것 같다. (저것보다 잘 설명하기 어려울 것 같음...) 이어서 4번 ref도 참조하면 좋다.(Transposed conv layer에서 나타날 수 있는 checkboard 현상을 극복하는 법에 대해 알려준다.)
 
 ---
 ### 6. 3D Convolution Layer
+기존 2D standard conv layer에서 Volume 부분이 추가된 Layer이다. CT나 MRI와 같이 여러 장의 이미지가 하나의 Volume으로 되있는 데이터를 처리 할 때나, 비디오와 같이 시계열 이미지 데이터를 처리할 때 사용된다.
 
+Computational Cost
+- W : Input Width
+- H : Input Height
+- C : Input Channel
+- K : Kernel Size
+- M : Output Channel
+- T : 데이터의 Volume(Time or # of images 등)
+3D Convolutional Layer : <img style="vertical-align:middle" src="http://latex.codecogs.com/png.latex?\dpi{100}\bg_white K^2 CMHWT"/>
+
+---
+### 7. 1D Convolution Layer
+주로 시계열 데이터를 처리할 때 사용되며, Biomedical 데이터 또는 다양한 시계열 데이터에서 RNN류와 더불어 사용된다.
 
 ---
 Reference
 1. [https://zzsza.github.io/data/2018/02/23/introduction-convolution/](https://zzsza.github.io/data/2018/02/23/introduction-convolution/)
 2. [https://hichoe95.tistory.com/48](https://hichoe95.tistory.com/48)
+3. [https://medium.com/activating-robotic-minds/up-sampling-with-transposed-convolution-9ae4f2df52d0](https://medium.com/activating-robotic-minds/up-sampling-with-transposed-convolution-9ae4f2df52d0)
+4. [https://distill.pub/2016/deconv-checkerboard/](https://distill.pub/2016/deconv-checkerboard/)
+5. [https://datascience.stackexchange.com/questions/6107/what-are-deconvolutional-layers](https://datascience.stackexchange.com/questions/6107/what-are-deconvolutional-layers)
+6. [https://towardsdatascience.com/understanding-1d-and-3d-convolution-neural-network-keras-9d8f76e29610](https://towardsdatascience.com/understanding-1d-and-3d-convolution-neural-network-keras-9d8f76e29610)
