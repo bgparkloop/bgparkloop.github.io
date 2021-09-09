@@ -8,7 +8,6 @@ tags:
   - edge case
   - lists
   - markup
-layout: default
 comments: true
 ---
 
