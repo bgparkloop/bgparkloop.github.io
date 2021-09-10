@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: http://bgparkloop.github.io/sitemap.xml
