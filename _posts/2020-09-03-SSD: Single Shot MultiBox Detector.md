@@ -30,13 +30,13 @@ toc_color: green
 
 ## 2.1. Model
 
-![image](/assets/imgs/2015-ssd/00.png)
+![image](/assets/imgs/paper/2015-ssd/00.png)
 
 SSD의 기본 모델 구성은 위와 같다. VGG-16 model을 backbone으로 사용하여 특정 Conv output들로부터 bounding box를 추출하여 low-level에서 high-level feature로 가면서 다양한 크기의 bounding box 위치를 고려한다. (이 말은 multi-scale object detection을 고려한다는 의미와 같다.) SSD에서는 총 6군데의 feature map에서 추출하게 되며 아래의 그림과 같이 고정된 영역을 bounding box로써 살펴본다.
 
 ## 2.2. Default boxes and Aspect ratios
 
-![image](/assets/imgs/2015-ssd/01.png)
+![image](/assets/imgs/paper/2015-ssd/01.png)
 
 ‌
 
@@ -44,11 +44,11 @@ SSD의 기본 모델 구성은 위와 같다. VGG-16 model을 backbone으로 사
 
 좀 더 자세히 알아보기 위해 아래의 외부 이미지를 통해 설명하면,‌
 
-![image](/assets/imgs/2015-ssd/02.png)
+![image](/assets/imgs/paper/2015-ssd/02.png)
 
 각 Conv Layer에서 3x3 크기 convolution filter를 "bound box 갯수 X Class 수 X Offset" 만큼 channel을 두어 category score를 추출한다. 각 conv layer에서 추출되는 bound box 수는 아래 그림과 같다.
 
-![image](/assets/imgs/2015-ssd/03.png)
+![image](/assets/imgs/paper/2015-ssd/03.png)
 
 위의 각 conv layer에서의 Bounding box 수는 aspect ratio에 따라 결정되며 aspect ratio 값에 따른 다양한 box offset 정보를 생성한다.
 
@@ -64,7 +64,7 @@ SSD의 Loss 구성은 다른 Object detection model과 동일하게 Confidence�
 
 Location Loss는 Faster RCNN에서 나온 smooth L1 loss를 이용하는데, 추정된 Location (center X, Y, Width, Height)에 대해 Groundtruth의 각 Center X, Center Y, Width, Height와의 차이 값으로 계산한다. Location Loss의 식은 아래와 같다.
 
-![image](/assets/imgs/2015-ssd/04.png)
+![image](/assets/imgs/paper/2015-ssd/04.png)
 
 - x는 category k에 대한 groundtruth 확률값
 - l은 추정된 box 중 i번째의 m(CX, CY, W, H 중 하나)
@@ -74,7 +74,7 @@ Location Loss는 Faster RCNN에서 나온 smooth L1 loss를 이용하는데, 추
 
 따라서, Conf와 Loc의 Loss 합은 다음과 같이 나타낸다.
 
-![image](/assets/imgs/2015-ssd/05.png)
+![image](/assets/imgs/paper/2015-ssd/05.png)
 
 - N은 prediction된 box의 갯수. (N=0이면, loss는 0으로 처리. update가 필요없으므로)
 - alpha 값은 논문에서는 cross validation을 통해 1로 설정하였음.
@@ -89,7 +89,7 @@ Loss의 업데이트는 위의 matching strategy에서 얻어진 predicted box�
 
 한 개의 Network에서 multi layer의 feature map들로 다양한 크기의 object를 학습할 수 있게 방법을 제시함. aspect ratio의 선택이 가장 중요해보이는데, 임의로 바꾸면 성능이 떨어짐. 문제마다 이를 최적화하면 더 좋을 듯.
 
-![image](/assets/imgs/2015-ssd/06.png)
+![image](/assets/imgs/paper/2015-ssd/06.png)
 
 - K : feature map을 추출하는 Layer의 수
 - s : scale parameter
@@ -97,11 +97,11 @@ Loss의 업데이트는 위의 matching strategy에서 얻어진 predicted box�
     - max : 최대 크기
     - Layer마다 scale 범위를 정규화하기위해 저렇게 수식을 사용
 
-![image](/assets/imgs/2015-ssd/07.png)
+![image](/assets/imgs/paper/2015-ssd/07.png)
 
 - a : aspect ratios (Box의 가로, 세로 비율 조정용)
 
-![image](/assets/imgs/2015-ssd/08.png)
+![image](/assets/imgs/paper/2015-ssd/08.png)
 
 
 - w : scale과 aspect ratio를 반영한 box의 width
@@ -143,7 +143,7 @@ sample patch의 크기는 원본 크기의 0.1에서 1배(원본크기)만큼 �
 
 ## 4.2. Model Analysis
 
-![image](/assets/imgs/2015-ssd/09.png)
+![image](/assets/imgs/paper/2015-ssd/09.png)
 
 ‌
 
@@ -151,13 +151,13 @@ SSD는 Faster RCNN같은 2 Stage 모델보다 Localization Error가 작음. (obj
 
 또한, SSD는 small object를 검출에 대해서는 약한 모습을 보임. 그래서 Input을 300에서 512로 늘리면 좀 더 잘 찾아짐. (그래도 근본적으로 small object에 대해 feature가 약하기 때문에 검출이 잘 안됨) 반면, large object에 대해서는 잘 찾음. (아래 그림처럼 box 크기에 따라 성능이 크게 좌우됨)
 
-![image](/assets/imgs/2015-ssd/10.png)
+![image](/assets/imgs/paper/2015-ssd/10.png)
 
 ‌
 
 Model 성능 점검을 위해 다양한 방식으로 SSD성능을 점검함.
 
-![image](/assets/imgs/2015-ssd/11.png)
+![image](/assets/imgs/paper/2015-ssd/11.png)
 
 - Aspect ratio에서 2와 3을 넣느냐 안 넣는냐는 성능차이가 크게 난다.
 - Atrous algorithm은 속도 측면에서 큰 도움이 된다.

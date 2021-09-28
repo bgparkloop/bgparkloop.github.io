@@ -23,7 +23,7 @@ toc_color: green
 
 # 2. Methods
 
-![image](/assets/imgs/2014-cnn-nlp2/00.png)
+![image](/assets/imgs/paper/2014-cnn-nlp2/00.png)
 
 - 한 문장에 나오는 단어들(N개)에 대해 임베딩(K sized vector)로 만들어 concat함
 - NxK region을 입력으로 받고, Convolution filter 크기는 한 번에 보고자 하는 단어 수 x 임베딩 크기로 지정함 (i x k, i=2, 3, 4, 5,...)
@@ -56,7 +56,7 @@ toc_color: green
 - CNN-non-static : CNN-static과 같지만 각 task에 대해 fine-tuning한 것
 - CNN-multichannel : 2개의 다른 dataset을 같이 입력으로 한 모델
 
-![image](/assets/imgs/2014-cnn-nlp2/01.png)
+![image](/assets/imgs/paper/2014-cnn-nlp2/01.png)
 
 ### 3.4. Multichannel vs Sing Channel
 
@@ -64,7 +64,7 @@ toc_color: green
 
 ### 3.5. Static vs Non-static
 
-![image](/assets/imgs/2014-cnn-nlp2/02.png)
+![image](/assets/imgs/paper/2014-cnn-nlp2/02.png)
 
 - Non-static model의 경우 pre-trained에 없는 word에 대해 fine-tuning을 하여 static model보다 더 정밀한 결과를 얻을 수 있음
 

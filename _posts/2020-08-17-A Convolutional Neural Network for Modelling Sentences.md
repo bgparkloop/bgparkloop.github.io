@@ -26,7 +26,7 @@ toc_color: green
 
 # 2. Methods
 
-![image](/assets/imgs/2014-cnn-nlp/00.png)
+![image](/assets/imgs/paper/2014-cnn-nlp/00.png)
 
 - Wide convolution + Dynamic K-max pooling으로 network 구성
     - Wide convolution : filter 범위가 feature map보다 크면 나머지는 0으로 채워서(zero padding) 연산하는 기법
@@ -44,17 +44,17 @@ toc_color: green
 
 # 3. Experimental Results & Conclusion
 
-![image](/assets/imgs/2014-cnn-nlp/01.png)
+![image](/assets/imgs/paper/2014-cnn-nlp/01.png)
 
-![image](/assets/imgs/2014-cnn-nlp/02.png)
+![image](/assets/imgs/paper/2014-cnn-nlp/02.png)
 
 - 영화 리뷰, 트위터 리뷰의 감정 분류 문제에서 기존의 Naive bayesian, SVM, BoW 모델들보다 성능이 뛰어남
 
-![image](/assets/imgs/2014-cnn-nlp/03.png)
+![image](/assets/imgs/paper/2014-cnn-nlp/03.png)
 
 - 6개의 질문 형식으로 분류하는 문제에 있어서도 외부 조건(추가 특징 정보)를 추가하여 비교할 때 SVM다음으로 가장 좋은 성능을 보임
 
-![image](/assets/imgs/2014-cnn-nlp/04.png)
+![image](/assets/imgs/paper/2014-cnn-nlp/04.png)
 
 - Feature detector를 시각화하여 보니 단순히 N-gram의 인식뿐 아니라 N-gram 내의 패턴도 분석되어 의미적으로 유사한 것끼리 묶이는 것을 확인할 수 있음
 

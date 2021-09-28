@@ -38,7 +38,7 @@ toc_color: green
 - Raw data X에 대해 embedding Z_i를 추출하고 Centroid U_i와 비교하여 i번째 clustering에 속할 확률을 계산함
 - 자유도 알파 값은 별도의 cross-validation을 진행하지 않으므로 1로 설정
 
-![image](/assets/imgs/2015-deep-embedding-clustering/00.png)
+![image](/assets/imgs/paper/2015-deep-embedding-clustering/00.png)
 
 ## 2.2. KL Divergence minimization
 
@@ -52,22 +52,22 @@ toc_color: green
     - cluster size로 loss 값의 정규화. cluster 크기에 따른 feature space에 기여하는 정도를 최소
     
 
-![image](/assets/imgs/2015-deep-embedding-clustering/01.png)
+![image](/assets/imgs/paper/2015-deep-embedding-clustering/01.png)
 
-![image](/assets/imgs/2015-deep-embedding-clustering/02.png)
+![image](/assets/imgs/paper/2015-deep-embedding-clustering/02.png)
 
 ## 2.3. Optimization
 
 - SGD를 이용하여 Cluster centers와 DNN parameters를 학습함.
 - cluster assignment가 일정 %이하로 떨어지면 학습을 멈춘다.
 
-![image](/assets/imgs/2015-deep-embedding-clustering/03.png)
+![image](/assets/imgs/paper/2015-deep-embedding-clustering/03.png)
 
-![image](/assets/imgs/2015-deep-embedding-clustering/04.png)
+![image](/assets/imgs/paper/2015-deep-embedding-clustering/04.png)
 
 ## 2.4. Parameter Initialization
 
-![image](/assets/imgs/2015-deep-embedding-clustering/05.png)
+![image](/assets/imgs/paper/2015-deep-embedding-clustering/05.png)
 ‌
 
 - SAE (Stacked Auto-Encoder)를 이용하여 초기화
@@ -91,31 +91,31 @@ toc_color: green
 
 ## 3.2. Experimental Results
 
-![image](/assets/imgs/2015-deep-embedding-clustering/06.png)
+![image](/assets/imgs/paper/2015-deep-embedding-clustering/06.png)
 
 ‌
 
 - SEC, LDGMI, K-means와 비교해서 뛰어난 성능을 보임.
 - class 수가 늘어나더라도 큰 성능 저하가 없음
 
-![image](/assets/imgs/2015-deep-embedding-clustering/07.png)
+![image](/assets/imgs/paper/2015-deep-embedding-clustering/07.png)
 
-![image](/assets/imgs/2015-deep-embedding-clustering/08.png)
+![image](/assets/imgs/paper/2015-deep-embedding-clustering/08.png)
 
 ‌
 
 - 데이터셋에서 가장 수량이 적은 class에 대해 r_min 비율만큼 사용하고 가장 많은 것을 100% 사용하게하여 그 사이에는 linearly increased한 비율로 사용할 때 DEC가 다른 방법에 비해 robust함.
 - imbalanced dataset에 대해서도 강점이 있음을 확인 할 수 있음
 
-![image](/assets/imgs/2015-deep-embedding-clustering/09.png)
+![image](/assets/imgs/paper/2015-deep-embedding-clustering/09.png)
 
 
 - Normalized Mutual Information (NMI)와 Generalizability 라는 metric을 통해 MNIST dataset에 cluster 수를 변화시켰을 때를 측정함
 - 아무래도 MNIST가 10개의 class를 갖다보니 9~10사이에서 최적값을 보임
 
-![image](/assets/imgs/2015-deep-embedding-clustering/10.png)
+![image](/assets/imgs/paper/2015-deep-embedding-clustering/10.png)
 
-![image](/assets/imgs/2015-deep-embedding-clustering/11.png)
+![image](/assets/imgs/paper/2015-deep-embedding-clustering/11.png)
 
 - Deep learning + K-means를 통해 clustering을 할 수 있다는 점에서 새로움
 - soft assignment를 통해 가상의 label을 붙여주는게 흥미로움.

@@ -24,18 +24,18 @@ toc_color: green
 - 어려운 Visual Task에서도 성공적임.
 - 의미있는 분류 가능.(예 - 빨간 구두, 파란 구두)
 
-![image](/assets/imgs/2016-cond-sim/00.png)
+![image](/assets/imgs/paper/2016-cond-sim/00.png)
 ‌
 
 # 2. Conditional Similarity Networks
 
-![image](/assets/imgs/2016-cond-sim/01.png)
+![image](/assets/imgs/paper/2016-cond-sim/01.png)
 
 ‌
 
 이 논문에서 소개하는 전체 Architecture는 위와 같다. 기본적인 Embedding Extractor(CNN)이 있고, 이를 통해 추출된 Embedding vector를 세부 분류(semantic)에 따라 mask를 달리하여 원하는 형태의 clustering을 수행한다. 아래는 masking을 통한 세부 분류를 자세하게 표현한 것이다.
 
-![image](/assets/imgs/2016-cond-sim/02.png)
+![image](/assets/imgs/paper/2016-cond-sim/02.png)
 
 ‌
 
@@ -47,7 +47,7 @@ toc_color: green
 - Loss W : Model로 추출한 원본 Embedding의 Loss -> Norm of Embedding / Sqrt(Batch size)
 - Loss M : Mask의 Loss -> Norm of Mask / Batch size
 
-![image](/assets/imgs/2016-cond-sim/03.png)
+![image](/assets/imgs/paper/2016-cond-sim/03.png)
 
 # 3. Experiments & Conclusion
 
@@ -63,7 +63,7 @@ toc_color: green
 
 ## 3.2. Model Variations
 
-![image](/assets/imgs/2016-cond-sim/04.png)
+![image](/assets/imgs/paper/2016-cond-sim/04.png)
 
 ‌
 
@@ -74,25 +74,25 @@ toc_color: green
 
 ## 3.3. Visual Exploring
 
-![image](/assets/imgs/2016-cond-sim/05.png)
+![image](/assets/imgs/paper/2016-cond-sim/05.png)
 
 ‌
 
 Font Dataset으로 학습한 embedding vector를 visualization 한 결과이다. 왼쪽은 character의 type으로 유사한 것끼리 clustering 된 것을 볼 수 있고, 오른쪽처럼 character의 style들이 유사한 것이 뭉친것을 확인 할 수 있다.
 
-![image](/assets/imgs/2016-cond-sim/06.png)
+![image](/assets/imgs/paper/2016-cond-sim/06.png)
 
 ‌
 
 Shoe dataset으로 학습한 결과에서는 Fig. 5의 (a)는 유사하다고 느껴지는 것들(모양, 텍스쳐 등)로 묶인 것을 확인 가능하다. (b)에서는 같은 category(부츠, 샌들 등)로 묶인 것을 확인 가능하다.
 
-![image](/assets/imgs/2016-cond-sim/07.png)
+![image](/assets/imgs/paper/2016-cond-sim/07.png)
 
 ‌
 
 또 다른 mask로 확인 가능 한 결과는 (a)와 같이 성별, 나이 대별로 신는 신발 종류로 분류가 된다. (b)에서는 신발의 높이 별로 정렬된 것을 확인 할 수 있다.
 
-![image](/assets/imgs/2016-cond-sim/08.png)
+![image](/assets/imgs/paper/2016-cond-sim/08.png)
 
 ‌
 
@@ -102,13 +102,13 @@ Shoe dataset으로 학습한 결과에서는 Fig. 5의 (a)는 유사하다고 �
 
 ## 3.4. Prediction Results
 
-![image](/assets/imgs/2016-cond-sim/09.png)
+![image](/assets/imgs/paper/2016-cond-sim/09.png)
 
 ‌
 
 Shoe dataset에 대해 소개한 방법들에 대해 유사도 측정(classification) 성능을 평가하였다. Standard 방법이 가장 Error rate가 높았고, set에 특화되게 triplet을 뽑은 것, masking 기법을 쓴 순서대로 Error rate가 작아짐을 볼 수 있다
 
-![image](/assets/imgs/2016-cond-sim/10.png)
+![image](/assets/imgs/paper/2016-cond-sim/10.png)
 
 ‌
 

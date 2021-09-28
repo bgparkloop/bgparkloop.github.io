@@ -22,7 +22,7 @@ toc_color: green
 
 # 2. Methods
 
-![image](/assets/imgs/2016-youtube-net/00.png)
+![image](/assets/imgs/paper/2016-youtube-net/00.png)
 
 - 전체 framework. Candidate generation, ranking의 2단계로 구성됨
 
@@ -55,7 +55,7 @@ toc_color: green
 
 ### 2.1.3. Model Architecture
 
-![image](/assets/imgs/2016-youtube-net/01.png)
+![image](/assets/imgs/paper/2016-youtube-net/01.png)
 
 - Input은 고정된 크기의 concatenated vector로 구성됨
     - video embedding, user's information, context, etc
@@ -72,7 +72,7 @@ toc_color: green
 
 ### 2.1.5. Example Age Feature
 
-![image](/assets/imgs/2016-youtube-net/02.png)
+![image](/assets/imgs/paper/2016-youtube-net/02.png)
 
 - 유저가 관련성이 있으면서 fresh한 content(new video)를 선호한다는 것을 관측함
 - ML 모델은 과거를 통해 미래를 예측하지만 bias가 있고, 실제 video의 인기 분포는 매우 유동적임.
@@ -80,7 +80,7 @@ toc_color: green
 
 ### 2.1.6. Label and Context Selection
 
-![image](/assets/imgs/2016-youtube-net/03.png)
+![image](/assets/imgs/paper/2016-youtube-net/03.png)
 
 - 추천 시스템에서 surrogate problem(대리 모델을 통한 문제 해결)이 많은데, 이런 경우는 A/B testing의 성능 측정에서 매우 중요하지만 offline 테스트 환경에서 정확한 측정이 어렵다.
     - 학습 예제는 모든 YouTube 비디오(심지어 다른 사이트 비디오들)를 사용함. 이렇게 안하면 새로운 content가 노출되기 어렵고, 추천자가 편향된 정보를 사용할 수 있음
@@ -88,7 +88,7 @@ toc_color: green
 
 ### 2.1.7. Experiments with Features and Depth
 
-![image](/assets/imgs/2016-youtube-net/04.png)
+![image](/assets/imgs/paper/2016-youtube-net/04.png)
 
 - Feature들의 종류와 Network depth와 관련된 실험을 수행
     - Feature 종류(시청한 목록, 검색 목록, 등록된지 얼마나 지났는지(example age), 등등) 많은 feature를 사용할 수록 더 높은 성능을 보임
@@ -132,13 +132,13 @@ toc_color: green
 
 ### 2.2.5. Modeling Expected Watch Time
 
-![image](/assets/imgs/2016-youtube-net/05.png)
+![image](/assets/imgs/paper/2016-youtube-net/05.png)
 
 - 얼마나 video를 시청할지 시간을 예측하기 위해 weighted logistic regression도입
 
 ### 2.2.6. Experiments with Hidden Layers
 
-![image](/assets/imgs/2016-youtube-net/06.png)
+![image](/assets/imgs/paper/2016-youtube-net/06.png)
 
 - 1024→512→256 연속 모델이 가장 성능이 좋음
     - input을 normalization 안해봤더니 loss가 0.2% 상승

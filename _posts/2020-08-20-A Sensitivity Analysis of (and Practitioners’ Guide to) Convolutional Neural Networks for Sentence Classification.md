@@ -27,7 +27,7 @@ toc_color: green
 
 # 2. Methods
 
-![image](assets/imgs/2015-cnn-nlp/00.png)
+![image](assets/imgs/paper/2015-cnn-nlp/00.png)
 
 - 실험을 위해 사용된 sentence classification CNN architecture
     - 몇 단어를 볼지(n-gram)를 위한 filter region size 변화(2, 3, 4)
@@ -37,13 +37,13 @@ toc_color: green
 
 # 3. Experimental Results & Conclusion
 
-![image](assets/imgs/2015-cnn-nlp/01.png)
+![image](assets/imgs/paper/2015-cnn-nlp/01.png)
 
 - 비교를 위한 SVM baseline 성능
 
 ### 3.1. Word embedding
 
-![image](assets/imgs/2015-cnn-nlp/02.png)
+![image](assets/imgs/paper/2015-cnn-nlp/02.png)
 
 - Word2Vec과 GloVe는 둘다 각 word 당 300-dims
 - 둘을 concat한 embedding도 사용해봄
@@ -51,27 +51,27 @@ toc_color: green
 
 ### 3.2. Region Size
 
-![image](assets/imgs/2015-cnn-nlp/03.png)
+![image](assets/imgs/paper/2015-cnn-nlp/03.png)
 
 - 각 dataset 마다 최적의 region size(N-gram)이 있음
 - Senetence의 길이에 따라 최적 길이도 달라짐
 
-![image](assets/imgs/2015-cnn-nlp/04.png)
+![image](assets/imgs/paper/2015-cnn-nlp/04.png)
 
-![image](assets/imgs/2015-cnn-nlp/05.png)
+![image](assets/imgs/paper/2015-cnn-nlp/05.png)
 
 - dataset마다 최적 region size 조합이 다르긴 함. 하지만, 성능차이가 크지 않기 때문에 크게 의미는 없음을 알 수 있음
 
 ### 3.3. Number of feature map
 
-![image](assets/imgs/2015-cnn-nlp/06.png)
+![image](assets/imgs/paper/2015-cnn-nlp/06.png)
 
 - region size는 고정인 상태로 feature map 크기만 변경하여 진행
 - dataset마다 적정 feature map이 다르지만, 일반적으로 600까지는 성능이 좋아짐
 
 ### 3.4. Activation Function
 
-![image](assets/imgs/2015-cnn-nlp/07.png)
+![image](assets/imgs/paper/2015-cnn-nlp/07.png)
 
 - ReLU, Tanh, Sigmoid, softplus, cube, tanh cube, iden의 7개 중 tanh, softplus, iden, ReLU가 가장 좋은 결과를 보임
 - dataset마다 좋은 결과를 보인 activation function이 다르지만 일반적으로 tanh와 ReLU가 가장 성능이 좋았음
@@ -84,9 +84,9 @@ toc_color: green
 
 ### 3.6. Regularization
 
-![image](assets/imgs/2015-cnn-nlp/08.png)
+![image](assets/imgs/paper/2015-cnn-nlp/08.png)
 
-![image](assets/imgs/2015-cnn-nlp/09.png)
+![image](assets/imgs/paper/2015-cnn-nlp/09.png)
 
 - dropout과 l2 norm에 대해 실험 진행
 - l2 norm은 성능에 영향을 크게 미치지 못함

@@ -38,11 +38,11 @@ toc_color: green
 - sequence의 길이는 $l_0$로 제한함. 이를 넘기면 무시
 - blank character를 포함한 알파벳이 아닌 character는 all-zero vector로 변환함. 알파벳의 정의는 다음과 같음
 
-![image](/assets/imgs/2015-cnn-nlp2/00.png)
+![image](/assets/imgs/paper/2015-cnn-nlp2/00.png)
 
 ### 2.3. Model Design
 
-![image](/assets/imgs/2015-cnn-nlp2/01.png)
+![image](/assets/imgs/paper/2015-cnn-nlp2/01.png)
 
 - 모델은 Large/Small의 2가지 형태로 구성함
     - Input feature의 크기는 1014로 고정
@@ -79,11 +79,11 @@ toc_color: green
 
 ### 3.4. Datasets
 
-![image](/assets/imgs/2015-cnn-nlp2/02.png)
+![image](/assets/imgs/paper/2015-cnn-nlp2/02.png)
 
 ### 3.5. Testing Errors
 
-![image](/assets/imgs/2015-cnn-nlp2/03.png)
+![image](/assets/imgs/paper/2015-cnn-nlp2/03.png)
 
 - Bag-of-means가 가장 성능이 안좋음.
 - 전통적인 방법이라고 무조건 안좋지 않음(ngrams TFIDF의 경우 딥러닝 기반보다 상당히 좋음)
