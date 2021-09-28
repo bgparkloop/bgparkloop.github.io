@@ -1,5 +1,5 @@
 ---
-title: "[Review] (2016) eep Neural Networks for YouTube Recommendations"
+title: "[Review] (2016) Deep Neural Networks for YouTube Recommendations"
 categories:
   - Recommendation
 tags:
@@ -13,26 +13,26 @@ toc_label: Title
 toc_color: green
 ---
 
-# Introduction
+# 1. Introduction
 
 - Youtube는 매우 많은 유저와 video가 있기 때문에 3가지를 고려해야 함
     - Scale: 많은 추천 알고리즘들이 작은 문제들에 대해 잘 동작하는데 Youtube와 같은 거대한 데이터에 대해 잘 동작하지 않음. 그래서 많은 유저, video를 핸들링할 수 있는 효율적인 serving 시스템과 특별한 알고리즘이 필요함
     - Freshness: 계속해서 수많은 데이터가 업로드되므로 이에 대해서 뿐만 아니라 유저가 최근 한 행동(action)에 대해서도 빠르게 반영이 되야함.
     - Noise: 유저들의 행동 흐름은 sparse하고 관측할 수 없는 외부적인 요인들이 있기 때문에 예측하기 어려움. 그래서 feedback에 대해서는 noise가 섞인 정답만 얻으므로 완전한 Ground-truth를 얻기 어렵다. content들의 metadata들은 잘 정의가 안되있으므로 이런 특징을 고려하여 알고리즘을 만들어야 함.
 
-# Methods
+# 2. Methods
 
 ![image](/assets/imgs/2016-youtube-net/00.png)
 
 - 전체 framework. Candidate generation, ranking의 2단계로 구성됨
 
-## Candidate Generation Network
+## 2.1. Candidate Generation Network
 
 - 유저의 YouTube activity history를 입력으로 받고 small subset video를 검색해줌 with high precision
 - provides broad personalization via collaborative filtering
 - 유사도는 비디오를 본 ID들, query tokens, demographic과 같은 coarse feature들로 표현함
 
-### Recommendation as Classification
+### 2.1.1. Recommendation as Classification
 
 - 수많은 비디오 중 유저가 본 video일 확률
     - $P(w_t=i|U,C)=\frac{e^{v_i u}}{\sum_{j\in V} e^{v_j u}}$
@@ -45,7 +45,7 @@ toc_color: green
     - $C$ : Context
 - YouTube 자체 explicit feedback 메커니즘(좋아요, 싫어요 등)이 있지만, implicit feedback을 모델 학습에 사용함
 
-### Efficient Extreme Multiclass
+### 2.1.2. Efficient Extreme Multiclass
 
 - 수 백만개의 video class중에 일부를 선택하는 process는 serving time에 행하기가 매우 어려움
 - 이전 알고리즘은 hash 기반으로 하였지만 지금은 negative sampling 기반의 알고리즘 사용
@@ -53,7 +53,7 @@ toc_color: green
 - 이 방식은 기존 softmax 방법보다 학습속도를 100배 이상 빠르게함
 - 학습된 likelihood는 nearest neighboring으로 class 분류 수행함
 
-### Model Architecture
+### 2.1.3. Model Architecture
 
 ![image](/assets/imgs/2016-youtube-net/01.png)
 
