@@ -1,8 +1,8 @@
 # main links
 main:
-  # - title: "Categories"
-  #   url: /categories/
-  - title: "Sample Posts"
+  - title: "Categories"
+    url: /categories/
+  - title: "Posts by Year"
     url: /year-archive/
-  - title: "Sample Collections"
-    url: /collection-archive/
+  - title: "Posts by Tag"
+    url: /tag-archive/
