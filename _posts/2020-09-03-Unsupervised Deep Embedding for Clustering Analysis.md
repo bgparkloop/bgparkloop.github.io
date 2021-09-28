@@ -96,7 +96,7 @@ toc_color: green
 ‌
 
 - SEC, LDGMI, K-means와 비교해서 뛰어난 성능을 보임.
-- class 수가 늘어나더라도 큰 성능 저하가 없
+- class 수가 늘어나더라도 큰 성능 저하가 없음
 
 ![image](/assets/imgs/2015-deep-embedding-clustering/07.png)
 
