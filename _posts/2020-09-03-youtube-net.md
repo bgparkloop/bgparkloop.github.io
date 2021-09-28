@@ -61,7 +61,7 @@ toc_color: green
     - video embedding, user's information, context, etc
 - 전체 hidden layer들은 fully-connected layer와 ReLU로 구성됨
 
-### Heterogeneous Signals
+### 2.1.4. Heterogeneous Signals
 
 - Neural network가 matrix factorization의 일반화로써 갖는 장점은 임의의 연속적이고 범주화된 특징들을 쉽게 추가할 수 있다는 점임
 - Search history는 watch history와 유사하게 다뤄지며, 각 query는 token화하여 unigram 또는 bigram으로써 embedding함
@@ -70,7 +70,7 @@ toc_color: green
 - 유저의 geographic region과 사용하는 device, gender, logged-in state, age 등의 정보도 결합
 - 모든 정보는 0-1로 normalize하여 input으로 들어감
 
-### Example Age Feature
+### 2.1.5. Example Age Feature
 
 ![image](/assets/imgs/2016-youtube-net/02.png)
 
@@ -78,7 +78,7 @@ toc_color: green
 - ML 모델은 과거를 통해 미래를 예측하지만 bias가 있고, 실제 video의 인기 분포는 매우 유동적임.
 - 그래서 training example의 age(신선도-freshness)를 feature로써 학습시킴. serving time에서 처음에는 0또는 음수로 시작하다가 점점 증가함
 
-### Label and Context Selection
+### 2.1.6. Label and Context Selection
 
 ![image](/assets/imgs/2016-youtube-net/03.png)
 
@@ -86,7 +86,7 @@ toc_color: green
     - 학습 예제는 모든 YouTube 비디오(심지어 다른 사이트 비디오들)를 사용함. 이렇게 안하면 새로운 content가 노출되기 어렵고, 추천자가 편향된 정보를 사용할 수 있음
     - 유저마다 고정된 수의 학습예제를 생성하여 동등한 가중치로 loss 함수에 영향을 끼치게 함. 이는 소수의 활동이 많은 유저들이 loss 함수에 많은 영향을 끼치지 않게 하기 위함
 
-### Experiments with Features and Depth
+### 2.1.7. Experiments with Features and Depth
 
 ![image](/assets/imgs/2016-youtube-net/04.png)
 
@@ -94,19 +94,19 @@ toc_color: green
     - Feature 종류(시청한 목록, 검색 목록, 등록된지 얼마나 지났는지(example age), 등등) 많은 feature를 사용할 수록 더 높은 성능을 보임
     - Depth의 경우 tower처럼 2048→1024→512 등으로 절반으로 차원이 떨어지는 구조로 늘려갔으며, 성능은 더 좋아지긴 하지만 수렴이 어려워짐
 
-## Ranking
+## 2.2. Ranking
 
 - 높은 확률로 추천해준 비디오라도 썸네일 등이 맘에 안들어서 선택 안될 수 있음
 - 유저의 관계성(선호도?)는 수백만개의 비디오가 아닌 수백개의 비디오를 추천해주는 것이기 때문에 이런 비디오들과 유저 사이의 관계를 잘 설명해줄 feature들이 많이 필요함
 - Best 추천은 high recall을 갖는 candidate 사이를 구별 할 수 있는 fine-level representation이 필요함
 - video와 user 사이 관계를 표현해줄 rich set of features로 score를 매겨 순위를 부여함
 
-### Feature Representation
+### 2.2.1. Feature Representation
 
 - 다양한 방식으로 feature는 정의됨
     - binary형태(logged-in), multi-variant(유저가 마지막으로 본 영상들)
 
-### Feature Engineering
+### 2.2.2. Feature Engineering
 
 - DNN이 직접 feature를 만드는 것을 많이 줄여주었지만, 실제로 raw data를 그냥 쓰지 않고 어느정도 가공해야함
     - 특히, 시간순으로 유저의 행동들이 video가 노출되는 것과의 관계성처럼
@@ -116,7 +116,7 @@ toc_color: green
 - 영상들이 과거 노출된 빈도를 묘사하는 특징도 중요함
     - 특정 topic이나 사람의 비디오를 추천하였는데 이를 안본다면 자연스럽게 그 다음에는 랭킹 순위가 내려가서 추천을 안해줌
 
-### Embedding Categorical Features
+### 2.2.3. Embedding Categorical Features
 
 - sparse한 categorical feature를 dense representation으로 바꾸기 위해 embedding을 사용함
     - vocabulary와 같은 unique ID space는 look up table등을 이용하고 근사치로 학습
@@ -124,19 +124,19 @@ toc_color: green
     - 같은 ID space의 categorical feature들은 같은 embedding을 공유함
     - Embedding sharing은 memory 소모 감소, 일반화, 학습속도 증가 등 다양한 이점이 있음
 
-### Normalizing Continuous Features
+### 2.2.4. Normalizing Continuous Features
 
 - NN은 입력값의 분포나 크기 단위에 굉장히 민감함
 - 반면, Decision tree와 같은 방식은 강건함
 - Input으로 일반적인 normalization $\tilde{x}$ 말고도, $\tilde{x}^2$나 $\sqrt{\tilde{x}}$을 입력으로 넣으면 다양한 표현이 가능해져 성능 향상을 돕는다
 
-### Modeling Expected Watch Time
+### 2.2.5. Modeling Expected Watch Time
 
 ![image](/assets/imgs/2016-youtube-net/05.png)
 
 - 얼마나 video를 시청할지 시간을 예측하기 위해 weighted logistic regression도입
 
-### Experiments with Hidden Layers
+### 2.2.6. Experiments with Hidden Layers
 
 ![image](/assets/imgs/2016-youtube-net/06.png)
 
@@ -144,7 +144,7 @@ toc_color: green
     - input을 normalization 안해봤더니 loss가 0.2% 상승
     - weight를 positive, negative에 동등하게 주었더니 loss가 4.1% 상승
 
-# Conclusion
+# 3. Conclusion
 
 - 제안한 Deep collaborative filtering 모델은 기존에 적용하던 Matrix Factorization보다 훨씬 효과적임
 - 미래 정보 유출을 예방하고 실시간 측정 기준에서 잘 동작하기 위해 비대칭적인 동시 시청 동작에 대해 잘 캐치하고 이를 대리 문제 해결에 잘 도입함

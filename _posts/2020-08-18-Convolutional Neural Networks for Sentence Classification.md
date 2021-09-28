@@ -13,7 +13,7 @@ toc_label: Title
 toc_color: green
 ---
 
-# Introduction
+# 1. Introduction
 
 - 일반적으로 문장 분류는 단어를 임베딩(1 to V mapping)으로 일정 길이의 vector로 변환하고 이를 통해 문장의 의미나 감정분석 등 다양한 분류를 진행함
 - 임베딩끼리의 비교는 Euclidean이나 Cosine distance 등을 주로 사용함
@@ -21,7 +21,7 @@ toc_color: green
     - Word를 Word2Vec방식을 이용하여 임베딩
     - senetence에 대해 simple CNN구조를 이용하여 word embedding사이의 관계를 분석함
 
-# Methods
+# 2. Methods
 
 ![image](/assets/imgs/2014-cnn-nlp2/00.png)
 
@@ -32,9 +32,9 @@ toc_color: green
 - dataset에 맞는 output size로 fully-connected layer를 통해 결과 도출함
 - FC-layer에는 dropout을 통한 Regularization을, weight vector들은 L2 Regularization을 도입
 
-# Experimental Results & Conclusion
+# 3. Experimental Results & Conclusion
 
-### Dataset
+### 3.1. Dataset
 
 - MR : 영화 리뷰 당 한 문장으로 이루어짐. 긍정/부정적인 리뷰인지 분류하는 데이터셋
 - SST-1 : MR의 확장 버전으로 5개의 클래스(매우긍정, 긍정, 중립, 부정, 매우 부정)으로 이루어짐
@@ -44,12 +44,12 @@ toc_color: green
 - CR : 제품 고객리뷰의 긍정/부정 예측 데이터셋
 - MPQA : 의견의 polarity 검출 데이터셋
 
-### Pre-trained Word Vectors
+### 3.2. Pre-trained Word Vectors
 
 - Google News로부터 얻어진 100 bilion words로 학습한 Word2Vec이용
 - pre-trained word에 없으면 무작위 초기화하여 사용
 
-### Model Variations
+### 3.3. Model Variations
 
 - CNN-rand : 기본 무작위 초기화한 CNN 모델
 - CNN-static : pre-trained word2vec으로 학습한 모델
@@ -58,11 +58,11 @@ toc_color: green
 
 ![image](/assets/imgs/2014-cnn-nlp2/01.png)
 
-### Multichannel vs Sing Channel
+### 3.4. Multichannel vs Sing Channel
 
 - multi channel을 이용하면 정규화가 잘되고 overfitting을 방지할 줄 알았지만, 그에 따른 fine-tuning이 별도로 필요하여 더 복잡해짐
 
-### Static vs Non-static
+### 3.5. Static vs Non-static
 
 ![image](/assets/imgs/2014-cnn-nlp2/02.png)
 

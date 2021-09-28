@@ -13,7 +13,7 @@ toc_label: Title
 toc_color: green
 ---
 
-# Introduction
+# 1. Introduction
 
 - 기존 연구된 CNN을 통한 sentence classification들은 생각보다 좋은 성능을 냄
 - 정확도를 최적화하기 위해 다양한 architecture 구조, embedding 방식 등을 고안함
@@ -25,7 +25,7 @@ toc_color: green
     - pooling strategy
     - regularization
 
-# Methods
+# 2. Methods
 
 ![image](assets/imgs/2015-cnn-nlp/00.png)
 
@@ -35,13 +35,13 @@ toc_color: green
     - activation function 종류
     - L2, dropout 등 정규화 유/무
 
-# Experimental Results & Conclusion
+# 3. Experimental Results & Conclusion
 
 ![image](assets/imgs/2015-cnn-nlp/01.png)
 
 - 비교를 위한 SVM baseline 성능
 
-### Word embedding
+### 3.1. Word embedding
 
 ![image](assets/imgs/2015-cnn-nlp/02.png)
 
@@ -49,7 +49,7 @@ toc_color: green
 - 둘을 concat한 embedding도 사용해봄
 - 성능은 거의 차이가 없음. 둘을 합친 embedding은 생각보다 성능이 별로임
 
-### Region Size
+### 3.2. Region Size
 
 ![image](assets/imgs/2015-cnn-nlp/03.png)
 
@@ -62,27 +62,27 @@ toc_color: green
 
 - dataset마다 최적 region size 조합이 다르긴 함. 하지만, 성능차이가 크지 않기 때문에 크게 의미는 없음을 알 수 있음
 
-### Number of feature map
+### 3.3. Number of feature map
 
 ![image](assets/imgs/2015-cnn-nlp/06.png)
 
 - region size는 고정인 상태로 feature map 크기만 변경하여 진행
 - dataset마다 적정 feature map이 다르지만, 일반적으로 600까지는 성능이 좋아짐
 
-### Activation Function
+### 3.4. Activation Function
 
 ![image](assets/imgs/2015-cnn-nlp/07.png)
 
 - ReLU, Tanh, Sigmoid, softplus, cube, tanh cube, iden의 7개 중 tanh, softplus, iden, ReLU가 가장 좋은 결과를 보임
 - dataset마다 좋은 결과를 보인 activation function이 다르지만 일반적으로 tanh와 ReLU가 가장 성능이 좋았음
 
-### Pooling strategy
+### 3.5. Pooling strategy
 
 - region size와 pooling size를 모두 변경하며 테스트함
 - average pooling도 같이 테스트해보았지만 max pooling에 비해 성능이 좋지 않음
 - K-max pooling보다 1-max pooling이 더 성능이 좋음
 
-### Regularization
+### 3.6. Regularization
 
 ![image](assets/imgs/2015-cnn-nlp/08.png)
 

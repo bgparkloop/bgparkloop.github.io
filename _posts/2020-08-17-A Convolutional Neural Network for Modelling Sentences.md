@@ -13,7 +13,7 @@ toc_label: Title
 toc_color: green
 ---
 
-# Introduction
+# 1. Introduction
 
 - 입력 받는 문장의 길이는 다양함
 - Dynamic K-Max Pooling을 이용함
@@ -24,7 +24,7 @@ toc_color: green
     - 6개 질문 종류에 대해 categorization
     - 트위터 게시물의 감정 예측
 
-# Methods
+# 2. Methods
 
 ![image](/assets/imgs/2014-cnn-nlp/00.png)
 
@@ -42,7 +42,7 @@ toc_color: green
 - N-gram과 같은 특성을 위해 첫 번째 Covolutional layer에서 N=10의 큰 단위의 N을 사용함
 - Convolutional layer와 Pooling layer를 통해 Input sentence에 대해 내부적으로 word 간 연관성을 갖도록 feature graph가 생성됨(induced feature graph)
 
-# Experimental Results & Conclusion
+# 3. Experimental Results & Conclusion
 
 ![image](/assets/imgs/2014-cnn-nlp/01.png)
 
