@@ -71,6 +71,8 @@ toc_color: green
 - 상당히 간단한 CNN 모델인데도 기존의 RNN 모델들과 유사하거나 좋은 성능을 보이는 점이 놀라움
 - CNN의 convolution filter 구조 상 인접한 word 간의 연결성을 파악에 용이하기 때문인듯 싶음
 
+
+
 # References
 
 - [https://www.aclweb.org/anthology/D14-1181/](https://www.aclweb.org/anthology/D14-1181/)

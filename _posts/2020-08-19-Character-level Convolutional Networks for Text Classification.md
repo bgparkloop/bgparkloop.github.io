@@ -93,6 +93,8 @@ toc_color: green
     - ConvNet은 사용자가 만든 임의의 데이터셋에서도 잘 동작(오타에 강건함)
 - 모든 데이터셋에 최적화된 모델은 없음
 
+
+
 # References
 
 - [https://arxiv.org/pdf/1509.01626.pdf](https://arxiv.org/pdf/1509.01626.pdf)

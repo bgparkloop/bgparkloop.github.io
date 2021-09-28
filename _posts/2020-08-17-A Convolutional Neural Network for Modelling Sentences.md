@@ -61,6 +61,8 @@ toc_color: green
 - 생각외로 CNN구조가 NLP task에 굉장히 유용함을 볼 수 있었음
 - 특히, feature detector의 visualization으로 유사 패턴끼리 모이는 것은 이미지에서 CAM을 통해 정답을 맞추기 위해 활성화 되는 영역을 보는 것과 같은 느낌(또는 filter의 모양)
 
+
+
 # References
 
 - [http://mirror.aclweb.org/acl2014/P14-1/pdf/P14-1062.pdf](http://mirror.aclweb.org/acl2014/P14-1/pdf/P14-1062.pdf)

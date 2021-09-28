@@ -98,6 +98,8 @@ toc_color: green
     - word embedding은 word2vec, glove 중 원하는 걸로 선택
     - regularization은 거의 영향이 없으니 선택적 사용
 
+
+
 # References
 
 - [https://arxiv.org/abs/1510.03820](https://arxiv.org/abs/1510.03820)

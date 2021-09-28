@@ -122,6 +122,9 @@ toc_color: green
 - 기존 방법들에 비해 generalization이 잘되는 걸로 보아 deep learning의 강력한 feature 추출 능력이 도움이 많이 된듯함
 - K개로 cluster 숫자를 입력받아야 한다는 점이 기존의 clustering 방법들과 동일함. 이 점이 해결된다면 정말 좋을듯
 
+
+
+
 # References
 
 - [https://leedakyeong.tistory.com/entry/%EB%85%BC%EB%AC%B8Unsupervised-Deep-Embedding-for-Clustering-AnalysisDEC](https://leedakyeong.tistory.com/entry/%EB%85%BC%EB%AC%B8Unsupervised-Deep-Embedding-for-Clustering-AnalysisDEC)
