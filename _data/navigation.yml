@@ -4,5 +4,3 @@ main:
     url: /categories/
   - title: "Posts by Year"
     url: /year-archive/
-  - title: "Posts by Tag"
-    url: /tag-archive/
