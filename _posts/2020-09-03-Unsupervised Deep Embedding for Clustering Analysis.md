@@ -4,8 +4,8 @@ categories:
   - Clustering
 tags:
   - Clustering
-  - DeepLearning
-  - MetricLearning
+  - Deep Learning
+  - Metric Learning
 comments: true
 toc: true
 toc_sticky: true

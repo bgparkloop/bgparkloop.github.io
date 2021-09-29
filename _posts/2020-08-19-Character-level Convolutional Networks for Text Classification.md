@@ -4,7 +4,7 @@ categories:
   - NLP
 tags:
   - CNN
-  - DeepLearning
+  - Deep Learning
   - NLP
 comments: true
 toc: true

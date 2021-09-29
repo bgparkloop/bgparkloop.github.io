@@ -3,7 +3,7 @@ title: "[Review] (2016) Deep Neural Networks for YouTube Recommendations"
 categories:
   - Recommendation
 tags:
-  - DeepLearning
+  - Deep Learning
   - Recommendation
   - Youtube
 comments: true

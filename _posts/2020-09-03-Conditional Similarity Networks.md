@@ -1,10 +1,10 @@
 ---
 title: "[Review] (2016) Conditional Similarity Networks"
 categories:
-  - MetricLearning
+  - Metric Learning
 tags:
-  - DeepLearning
-  - MetricLearning
+  - Deep Learning
+  - Metric Learning
 comments: true
 toc: true
 toc_sticky: true

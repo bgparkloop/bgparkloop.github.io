@@ -4,7 +4,7 @@ categories:
   - Detection
 tags:
   - CNN
-  - DeepLearning
+  - Deep Learning
   - Detection
 comments: true
 toc: true

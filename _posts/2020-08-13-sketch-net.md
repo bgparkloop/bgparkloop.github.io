@@ -3,7 +3,7 @@ title: "[Review] (2017) A Neural Representation of Sketch Drawings"
 categories:
   - Reconstruction
 tags:
-  - DeepLearning
+  - Deep Learning
   - Sketch
   - RNN
   - Reconstruction

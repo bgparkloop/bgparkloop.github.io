@@ -3,7 +3,7 @@ title: "[Review] (2016) Improved Techniques for Training GANs"
 categories:
   - GAN
 tags:
-  - DeepLearning
+  - Deep Learning
   - GAN
 comments: true
 toc: true

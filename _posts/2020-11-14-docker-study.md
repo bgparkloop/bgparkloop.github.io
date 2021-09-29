@@ -3,10 +3,10 @@ title: "[Study] Docker setup & simple example"
 categories:
   - Docker
 tags:
-  - docker
-  - gpu
-  - flask
-  - api
+  - Docker
+  - GPU
+  - Flask
+  - API
 comments: true
 toc: true
 toc_sticky: true

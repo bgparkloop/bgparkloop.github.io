@@ -3,7 +3,7 @@ title: "[Review] (2017) CNN for Action Detection and Segmentation in Videos"
 categories:
   - Detection
 tags:
-  - DeepLearning
+  - Deep Learning
   - Detection
   - Action
   - Segmentation
