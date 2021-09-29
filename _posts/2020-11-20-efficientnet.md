@@ -107,3 +107,7 @@ toc_color: green
 - Mobile Inverted Bottleneck Conv라는 layer구성을 통해 baseline을 최대한 효율적으로 만듦 (추후 scaling에 더 도움이 되는 것으로 보임)
 - baseline도 중요하지만 어떻게 scaling하느냐에 따라 성능차이가 큼을 알 수 있었음
 - 논문에서 제안된 이론들을 이용하여 AutoML을 사용하면 더 효율적인 모델이 나오지 않을까 하는 생각?
+
+
+# References
+- https://arxiv.org/pdf/1905.11946.pdf

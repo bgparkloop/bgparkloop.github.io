@@ -69,6 +69,8 @@ toc_color: green
 
 ![image](/assets/imgs/paper/2020-efficientdet/02.png)
 
+
+
 # 3. Experimental Results & Conclusion
 
 ![image](/assets/imgs/paper/2020-efficientdet/03.png)
@@ -109,3 +111,6 @@ toc_color: green
     
 - Efficientnet 자체도 기존에 연구되었던 depth, channel, image size에 대해서 종합적으로 고려한 모델로 효율을 극대화시켰는데, EfficientDet에서도 이러한 특성과 더불어 BiFPN이라는 효율적인 feature fusion 방식을 도입함으로써 Detection 뿐 아니라 Multi-scale이 고려되는 segmentation에서도 효과적이라는 것을 입증하여 상당히 인상적임
 - BiFPN이라는 layer 구조는 EfficientDet이 아니더라도 응용하여 다른 network에도 충분히 사용 가능할 것으로 보이고 매우 효율적임.
+
+# References
+- https://arxiv.org/abs/1911.09070
